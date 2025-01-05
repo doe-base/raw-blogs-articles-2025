@@ -1,0 +1,15 @@
+Introduction
+    In my last blog <link to the last blog> we looked at the structure of IP address. One key top there was subnetting mask. In this post I want to dive in the what subnetting is, I will teach the importance of subnetting and we will work over a real life example of subnetting in play
+
+What is subnetting
+Subnetting ...
+
+What are Flat networks
+
+
+Why subnetting is important
+...
+
+Real world example of subnetting in play
+...
+

@@ -1,0 +1,7 @@
+Introduction
+    How VPN generally make the performance of a network connection slower. This artica is a summar of a 2019 study by Thomas Fischer of the University of Skovde.
+
+What are VPNs
+
+
+

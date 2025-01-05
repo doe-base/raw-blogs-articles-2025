@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/monokai.min.css"
+  />
+    <link rel="stylesheet" href="./style.css">
+    <title>How the Performance of Certain VPN Implementations Differ</title>
+</head>
+<style>
+    .hljs {
+      background-color: transparent;
+    }
+
+    .hljs-ln-n {
+      padding-right: 1rem;
+    }
+  </style>
+<body>
+
+
+    <section class="container" style="max-width: 750px; margin: 0 auto">
+
+        <article>
+            <header class="header">
+                <h1 class="topic">What are Virtural Private Netowrks (VPNs)</h1>
+                <div class="line"></div>
+            </header>            
+            <p class="paragraph">A Virture Private Network is a technology used to extend a Private Network through the internet so that authrised users (usually with a shared secret such as a password) may have access to it as if they where directly connected. It makes these "authrised users" appear directly connected to the Private Network even tho they are throusands of miles and many router hops away.</p>
+
+            <div>
+              <p class="sub-header">VPN Tunnel</p>
+              <p class="paragraph">This type of connections are acheve using secure, encripted “tunnels” called VPN tunnels. They are refferted to as tunnels because they are established between two enpoint. If two routers have tunneling configured, it is possible to send encripted packets that might not be support over the general internet between them. If setup correct these tunnels provide:</p>
+                <ul class="paragraph">
+                  <li>"privacy" by not exposing the private network to the public Internet</li>
+                  <li>"security" by encripting the packets shared thought the tunnes. Any body that get asscc to encripted packets will not be able to read them. Only authrised users can read the packets.</li>
+                  <li>"data intergrity" through mechnisims that dectect if data was termpered with during transport.</li>
+                </ul>
+                <p class="paragraph">
+                Any network running such tunnel is running a Virture Private Network or VPN. More on VPN tunnels later. </p>
+            </div>
+
+            <div>
+              <p class="sub-header">Types of VPN Tunnelling</p>
+              <ul class="paragraph">
+                <li>Host-to-network or Remote access tunneling: Allows individual users to connect securely to a private network. Common for remote workers that need access to private compnaey files.</li>
+
+                <li>Site-to-site tunneling: Connects entire networks. Common for Compnaies with diffrent offices in diffrent locations.</li>
+
+                <li>Split tunneling: Routes only specific traffic through the VPN, while other traffic goes directly to the internet. Useful for balancing security and speed.</li>
+
+                <li>Full tunneling: Routes all trafic through the VPN. Provides maximum privacy and security.</li>
+              </ul>
+            </div>
+
+            <div>
+              <p class="sub-header">A real world example of when VPN are used</p>
+              <p class="paragraph" style="margin-bottom: 0;">Suppose that a company has offices in Chicago, New York, and Miami. With each of this offices having their own local ISP [Internet Service Provied]. The compnay can employ VPN solutions to create a secure and private "VPN tunnel" connecting each offies, ensuring secure communication and resource sharing among them instead of shearing company's data directly over the public and untrusted internet.</p>
+              <p class="paragraph">VPNs provided the same solution for remote workers working from home or a diffrent location.</p>
+            </div>
+
+            <blockquote class="definition">
+              <p class="quote-paragraph">
+                  Side Note: VPN provide securty between two enpoint, it doest not secure the enpoint them self. This is a urge security risk on it own because every enpoint with access to your VPN has access to your Private Network. Other sercurty major will be needed to provide enpoint point security.
+              </p>
+            </blockquote>
+
+            <div>
+              <p class="sub-header">The rest of this article</p>
+              <p class="paragraph">Like many things in life, VPNs come with both advantages and disadvantages. One notable drawback is the latency and reduced network performance and speed they can introduce. Over the years, various VPN implementations have emerged, aiming to address these challenges.</p>
+              <p class="paragraph">This article delves into various state-of-the-art VPN implementations to evaluate the degree of performance degradation they experience. It is based on a 2019 study conducted by Thomas Fischer at the University of Skövde.</p>
+            </div>
+        </article>
+
+
+        <article>
+          <header class="header">
+              <h1 class="topic">Different VPN solutions</h1>
+              <div class="line"></div>
+          </header>
+          
+          
+        </article>
+
+    </section>
+
+
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+
+    <script src="path/to/highlight.min.js"></script>
+    <script src="path/to/highlightjs-line-numbers.min.js"></script>
+
+    <script>
+      hljs.highlightAll();
+    </script>
+    <script>
+      hljs.initLineNumbersOnLoad();
+    </script>
+
+</body>
+</html>
