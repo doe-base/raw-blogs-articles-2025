@@ -267,3 +267,6 @@ a{
   li{
     margin-bottom: 0.4rem;
   }
+  .bold{
+    font-weight: bold;
+  }
