@@ -91,17 +91,46 @@
           </header>
           <p class="paragraph">There are dozens of diffrent VPN solutions out there. But 3 stand out as the most popular and are used for this study including: </p>
           <ul class="paragraph">
-            <li class="bold">IPSec</li>
+            <li class="bold">IPSec (IP Security Protocol)</li>
             <li class="bold">OpenVPN</li>
             <li class="bold">WireGuard</li>
           </ul>
           
+          <div>
+            <p class="sub-header">IPsec (IP Security Protocol)</p>
+            <p class="paragraph">IPSec was standardized by the Internet Engeenring Task Force (IETF) in 1995. It IPsec was originally developed for IPv6, but it has also been widely implemented for IPv4. IPsec is an IETF approved, end-to-end authentication and encryption system. Almost all serious VPN vendors ship a product that has at least an IPsec compatibility mode. Linux, Solaris, HP-UX, and AIX all include native kernel support for IPsec.</p>
+            <p class="paragraph">In tunnel mode, IPsec encrypts the transport layer header, which includes the
+              source and destination port numbers. Unfortunately, this scheme conflicts with
+              the way in which most firewalls work. For this reason, most modern implementa-
+              tions default to using transport mode, in which only the payloads of packets (the
+              data being transported) are encrypted.</p>
+          </div>
+
+          <div>
+            <p class="sub-header">OpenVPN</p>
+            <p class="paragraph">OpenVPN has become the de facto standard in VPNs today with more than 50 million downloads since its release in 2001 (OpenVPN, 2019). It uses SSL/TLS for key exchange and encryption. OpenVPN is open source, it is secure by the extensive scrutiny it gets by being accessible to anyone who wishes to review the code. In 2017 an independent review of OpenVPN was performed by Cryptography Engineering (Hopkins and Green, 2019), the results found no major vulnerabilities. It supports both TCP and UDP but defaults at UDP. UDP is faster but does not perform error correction as TCP. OpenVPN is fully functional on Windows, macOS and Linux. There is plenty of ciphers and encryption methods to choose from.</p>
+          </div>
+
+          <div>
+            <p class="sub-header">WireGuard</p>
+            <p class="paragraph">WireGuard is the name of a new VPN that aims to replace two of the most widely used VPN solutions, namely OpenVPN and IPSec (Donenfeld, 2018). It claims to be more useful than IPSec while avoiding the complexity of it and by having better performance than OpenVPN. It was originally written for Linux systems but is now available across more platforms. It is also open source like OpenVPN and IPSec, so it also benefits of being open to view for anyone with the knowledge to audit it. It is a design goal to have an overall straight forward configuration like SSH, i.e asymmetric key cryptography. Wireguard is currently UDP only (Donenfeld, 2018).</p>
+          </div>
+
+          <p class="paragraph"><span class="bold">Some other VPN Solutions include:</span> PPTP (Point to Point Tunneling Protocol), SSTP (Secure Socket Tunneling Protocol), OpenSSH (Open Secure Shell)</p>
           
+        </article>
+
+        <article>
+            <header class="header">
+                <h1 class="topic">Network Performance Metrics</h1>
+                <div class="line"></div>
+            </header>            
+            <p class="paragraph"></p>
         </article>
 
     </section>
 
-
+    
     
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
