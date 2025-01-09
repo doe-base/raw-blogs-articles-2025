@@ -79,7 +79,8 @@
             <div>
               <p class="sub-header">The rest of this article</p>
               <p class="paragraph">Like many things in life, VPNs come with both advantages and disadvantages. One notable drawback is the latency and reduced network performance and speed they can introduce. Over the years, various VPN implementations have emerged, aiming to address these challenges.</p>
-              <p class="paragraph">This article delves into various state-of-the-art VPN implementations to evaluate the degree of performance degradation they experience. It is based on a 2019 study conducted by Thomas Fischer at the University of Skövde.</p>
+              <p class="paragraph">This article delves into various state-of-the-art VPN implementations to evaluate the degree of performance degradation they experience. It is based on a 2019 study conducted by Thomas Fischer at the University of Skövde. The research question is as follow: <br> <span class="important-text">How does the performance differ between state-of-the-art VPN solutions under stable versus unreliable
+                network conditions?</span></p>
             </div>
         </article>
 
@@ -125,7 +126,78 @@
                 <h1 class="topic">Network Performance Metrics</h1>
                 <div class="line"></div>
             </header>            
-            <p class="paragraph"></p>
+            <p class="paragraph">The metrics used when testing networks are: <span class="important-text">throughput</span>, <span class="important-text">latency</span> and <span class="important-text">packet loss</span></p>
+
+            <ul class="paragraph">
+              <li><span class="bold">Throughput</span>: is how much data is sent from one point to another during a certain time frame. Throughput is usually measured in bits per second (bps). It is affected by the whole infrastructure of the channel such as the physical medium (cabling) and computational power among other factors.</li>
+
+              <li><span class="bold">Latency</span>: is defined as the time it takes to transmit a packet in one direction, for example client to server. In VPN testing latency is in a time value, usually measured in seconds milliseconds (ms).</li>
+
+              <li><span class="bold">Packet loss</span>: is a metric that refers to how many packets are “lost” i.e did not arrive from source to destination. This can be caused due to congestion on the network for example. It is measured as a percentage of packet lost with respect to packets sent.</li>
+            </ul>
+
+            <p class="sub-header">Unreliability handling</p>
+            <p class="paragraph">Unreliability handling is a description of how the network handles disturbances. These disturbances may be artificial or natural such as high latency or packet loss. It can be quantifiable by limiting of the aforementioned metrics.</p>
+            <p class="paragraph">An example is a Remote worker working with an Unreliabile network connection.The unreliability of a network could be a fluctuating connection such as cellular on a moving train that is traveling far from cities that have good infrastructure or traveling through mountains. It could also be a remote worker, who is working very far away from the office while requiring access to files across the world. This would add delay that is way above the usual packet transfer delay that one might expect while working with files that are on a server in the same building. Therefore it is important to investigate how the current VPNs compare on unreliable networks.</p>
+        </article>
+
+        <article>
+          <header class="header">
+              <h1 class="topic">Tool for Measuring</h1>
+              <div class="line"></div>
+          </header>
+          
+          <p class="paragraph">The tool for measuring them is <span class="important-text">iPerf</span>.</p>
+
+          <p class="sub-header">iPerf</p>
+          <p class="paragraph">iPerf was identified in related research as the tool to test the performance of VPNs. In a research by Narayan, Brooking and de Vere (2009), the authors used iPerf to measure the throughput on three different VPN solutions. The VPNs used in this research are PPTP, SSL (Secure Sockets Layer) and IPSec. While the study is outdated by now, the measure metrics are still valid for evaluation today. That research concluded that the network performance does indeed depend on what OS, VPN solution and encryption algorithm is chosen.</p>
+        </article>
+
+
+        <article>
+          <header class="header">
+              <h1 class="topic">Steps for the Experiment</h1>
+              <div class="line"></div>
+          </header>
+          
+          <p class="paragraph">To accuratly answer the experiment question ( <span class="important-text">How does the performance differ between state-of-the-art VPN solutions under stable versus unreliable
+            network conditions?</span> ), we need to follow these steps: </p>
+          
+          <ol class="paragraph">
+            <li><span class="important-text">Identify</span> what VPN solutions to experiment on, how to control traffic, what metrics to use, with which tools and what data to collect</li>
+              <p class="paragraph">As metion ealiar, the 3 VPN solution use for this test are OpenVPN, WireGuard and IPSec. A very important fact is that the configurations of the VPN solutions are default For all VPN solutions, default configuration settings were kept as far as possible, rather than unifying the settings in respect to, for example, network protocols, cryptographic algorithms, or choices for compression.</p>
+              <p class="paragraph">The analysis also presented what metrics to use in the testing. The lab set up was chosen to be as simple as possible but still having one server and one client per OS and to be able to control and monitor the network traffic. This was done to minimize outside impact on the network and to have as valid results as possible.</p>
+              <p class="paragraph">Network metrics for examining the VPNs are: <br />
+                - Throughput - Megabits per second (Mbps) <br />
+                - 400 msec Delay (part 1 of unreliability) <br />
+                - 1% Packet loss (part 2 of unreliability) <br />
+              </p>
+              <p class="paragraph">The tool used to measure network performance is iPerf3 (https://iperf.fr) version 3.1.3. The reason behind this is that it fulfills the need to test throughput and it contains the data transferred i.e it is possible to see how many packets did not arrive. Since iPerf is available for Windows, Linux and macOS, it is fitting for this experiment as it is being done on all three different OSs.</p>
+
+            <li>Test the network in the experimental setup <span class="important-text">without any VPN   solution</span> to identify baseline performance</li>
+
+            
+
+            <li>Configure and test VPN Solutions <span class="important-text">on three different operating systems</span> with the network unreliability conditions</li>
+            <p class="paragraph"><span class="bold">Trafic Shaping</span> was use to introduce the network unreliability conditions. The unreliability testing was achieved by utilizing the traffic shaping tool on the pfSense router. The traffic shaper tool was configured to add 400msec delay as one unreliability and 1% packet loss as the other.</p>
+            <p class="paragraph">Since all the data between the VPN clients and server is routed through the router, it applies the traffic shaping both ways. All clients were tested with all three different setups, namely; baseline test which had no unreliability added. Unreliability #1 is the 400msec delay option and unreliability #2 is the 1% packet loss option.</p>
+
+
+
+            <li><span class="important-text">Analyze and compare the results</span> to see if there is any indication of performance difference between the VPN solutions</li>
+            </ol>
+
+          
+        </article>
+
+
+        <article>
+          <header class="header">
+              <h1 class="topic">The Experiment</h1>
+              <div class="line"></div>
+          </header>
+          
+          
         </article>
 
     </section>
