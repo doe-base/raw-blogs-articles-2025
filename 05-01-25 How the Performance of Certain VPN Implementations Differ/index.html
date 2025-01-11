@@ -197,8 +197,125 @@
               <div class="line"></div>
           </header>
           
+          <p class="paragraph">The experiment test-bed setup consists of one machine acting as a software router running pfSense. It has two NICs (Network Interface Controller) that can each handle speeds up to 1Gbs. Port 1 is connected to the VPN server and port 2 to a switch connecting the client network. A switch between the router and the clients was used in the setup for simplicity with testing, because the router only had two ports and would therefore have to be manually unplugged and plugged whenever another client was tested. If the switch introduced any delay it would have been the same for all clients and VPNs and thus the addition of it is negligible for this experiment.</p>
+
+          <p class="paragraph">After setting up the three VPN on 3 OS. Here is a table show important default aspect of default configuration of the VPNs:</p>
+
+          <ul class="paragraph">
+            <li>One of the aspects is the algorithm for the data encryption, the performance of a VPN is affected by what encryption is used.</li>
+            <li>The second one is if compression of the payload is enabled, which by default is disabled on all the tested VPN solutions.</li>
+            <li>Lastly multi-threading, this specifies if the encryption and decryption process is able to be done on multiple CPU cores. This option gives the VPN the ability to perform parallel encryptions on multiple CPU cores, which cloud increase the speed of encryption and description.</li>
+          </ul>
           
+
+          <div class="table-container paragraph">
+            <table class="table">
+              <tbody>
+                <tr></tr>
+              </tbody>
+                <thead>
+                    <tr>
+                      <th class="th"><span class="bold">Default configuration</span></th>
+                      <th class="th">IPSec</th>
+                      <th class="th">WireGuard</th>
+                      <th class="th">OpenVPN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="td"><span class="bold">Algorithm for encrypting data</span></td>
+                        <td class="td">AES-256</td>
+                        <td class="td">ChaCha20</td>
+                        <td class="td">AES-256-GCM</td>
+                    </tr>
+                    <tr>
+                        <td class="td"><span class="bold">Compression</span></td>
+                        <td class="td">Yes*</td>
+                        <td class="td">No</td>
+                        <td class="td">No</td>
+                    </tr>
+                    <tr>
+                      <td class="td"><span class="bold">Multi-threading</span></td>
+                      <td class="td">Yes</td>
+                      <td class="td">Yes</td>
+                      <td class="td">No</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="paragraph">The router in this experiment is a pfSense FreeBSD 11.2-RELEASE-p10 (pfSense 2.4.4-RELEASE-p3) software router. The reason I chose this router is due to the fact that it is possible to shape the traffic directly on the router using the tool that comes with pfSense called dummynet. With dummynet it is possible to add the unreliability aspects of the testing directly between the VPN nodes without having to use a dedicated tool or software on the nodes.</p>
+          </div>
         </article>
+
+        <article>
+          <header class="header">
+              <h1 class="topic">Testing</h1>
+              <div class="line"></div>
+          </header>
+          
+          <p class="paragraph" style="margin-bottom: 0;">The tests are done with iPerf which is available on all three OSs. To test how the VPN solutions differ in unreliable network conditions, the network will be degraded by shaping the traffic to drop a certain percentage of packets or adding delay while performing an iPerf test to see how the VPN implementations handle the unreliability.</p>
+          <p class="paragraph">No inconcistencies are expected due to the fact that all VPNs are tested on the same OS and the same hardware with the same tool and configuration of the tool.</p>
+          
+          <p class="paragraph">The image below shows the flow of testing:</p>
+          <a target="_blank" href="./image.CS3C02.png">
+              <img src="./image.CS3C02.png" alt="testing flow chat" class="img">
+          </a>
+          <p class="paragraph">The tests started without any VPN then the VPN solutions were enabled for the tests and disabled when it was done as seen in Figure 4. This flow chart was repeated three times, one loop for No VPN, one loop for Unreliability #1 and one loop for Unreliability #2.</p>
+        </article>
+
+
+        <article>
+          <header class="header">
+              <h1 class="topic">Results</h1>
+              <div class="line"></div>
+          </header>
+
+          <p class="paragraph">The results presented are values from when iPerf sends the packets to the server and server receives and presents the values. All the results presented are the mean values of the 50 tests per case.</p>          
+          <a target="_blank" href="./result-table.png">
+              <img src="./result-table.png" alt="result table" class="img">
+          </a>
+
+        </article>
+
+        <article>
+          <header class="header">
+              <h1 class="topic">Observation</h1>
+              <div class="line"></div>
+          </header>
+
+          <p class="paragraph">To reiterate, the research question for this paper is: “How does the performance differ between state-of-the-art VPN solutions under stable versus unreliable network conditions?” A definitive conclusion is that all implementations have their own advantages and disadvantages. Some VPN solutions perform better on a certain operating system. The most impactful conclusions drawn by the results are presented below.</p>          
+          
+          <ul class="paragraph">
+            <li>The best performing VPN solutionhe best performing VPN solution f for macOSor macOS, , if the network is reliableif the network is reliable, , was IPSec was IPSec followed byfollowed by WireGuard and WireGuard and worst performing wasworst performing was OpenVPNOpenVPN</li>
+
+            <li>We can see that with any of the unreliability variables in effect, , all VPNall VPNs and OSs had reduced s and OSs had reduced throughput in comparison with no unreliabilitythroughput in comparison with no unreliability</li>
+
+            <li>LinuxLinux is fastest with the baseline and no unreliability at 9is fastest with the baseline and no unreliability at 943.543.5Mbits/secMbits/sec</li>
+
+            <li>- All VPNs except OpenVPN perAll VPNs except OpenVPN perform best in Linux during the delay unreliability when comparing form best in Linux during the delay unreliability when comparing the other OSs under delaythe other OSs under delay
+            </li>
+
+            <li>All VPNs perform best in Linux while experiencing packet lossAll VPNs perform best in Linux while experiencing packet loss</li>
+
+            <li>OpenVPN is not the top performer in any testOpenVPN is not the top performer in any test</li>
+
+            <li>Linux performs best in all unreliaLinux performs best in all unreliability tests except one, the unreliability #1 bility tests except one, the unreliability #1 – – delay delay</li>
+          </ul>
+
+        </article>
+
+        <article>
+          <header class="header">
+              <h1 class="topic">Conclution</h1>
+              <div class="line"></div>
+          </header>
+
+          <p class="paragraph">Based on the results a few recommendations for OS and VPN combination emerged when using the default configuration. They can be seen in Table 6, the VPN in bold/blue background is the overall recommended for the specific network situation as it had the best performance. The recommendation is the following:</p>
+
+          <a target="_blank" href="./recommendation.png">
+              <img src="./recommendation.png" alt="result table" class="img">
+          </a>
+        </article>
+        
 
     </section>
 
