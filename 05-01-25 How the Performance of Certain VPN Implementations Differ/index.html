@@ -168,6 +168,16 @@
 
           <p class="sub-header">iPerf</p>
           <p class="paragraph">iPerf is widely recognized as a reliable tool for testing VPN performance. In research conducted by Narayan, Brooking, and de Vere (2009), iPerf was used to measure the throughput of three different VPN solutions: PPTP, SSL (Secure Sockets Layer), and IPSec. Although the study is now outdated, the metrics measured are still relevant for evaluation today. The research concluded that network performance indeed depends on factors such as the operating system, the VPN solution, and the encryption algorithm chosen.</p>
+          
+          <p class="sub-header">Operating systems</p>
+          <p class="paragraph">The test was performed on 3 different operating systems: <span class="important-text">Windows 10</span>, <span class="important-text">Linux Ubuntu</span>, and <span class="important-text">macOS</span>.</p>
+
+          <p class="sub-header">pfSense router</p>
+          <p class="paragraph">The router used in this experiment is a <span class="bold">pfSense software</span> router running FreeBSD 11.2-RELEASE-p10 (pfSense 2.4.4-RELEASE-p3). The reason for choosing this router is its capability to shape traffic directly using a tool called <span class="important-text">dummynet</span>, which is built into pfSense. With dummynet, it is possible to introduce network unreliability aspects (such as delay and packet loss) directly between the VPN nodes. This approach eliminates the need for using dedicated tools or software on the individual nodes themselves, simplifying the setup and ensuring more accurate control over network conditions for the experiment.</p>
+          
+          <a target="_blank" href="./image.WKAJ02.png">
+              <img src="./image.WKAJ02.png" alt="result table" class="img">
+          </a>
         </article>
 
 
@@ -180,30 +190,30 @@
           <p class="paragraph">To accurately answer the research question—<span style="font-style: italic;">How does the performance differ between state-of-the-art VPN solutions under stable versus unreliable network conditions?</span>—the following steps were taken: </p>
           
           <ol class="paragraph">
-            <li><span class="bold">Identify the VPN solutions to experiment on, control traffic, determine which metrics to use, choose the tools, and decide what data to collect</span></li>
-              <p class="paragraph">As mentioned earlier, the three VPN solutions selected for this test are OpenVPN, WireGuard, and IPSec. It is important to note that the default configurations of these VPN solutions were used. For all three VPN solutions, default settings were maintained wherever possible, rather than standardizing the settings across network protocols, cryptographic algorithms, or compression choices.</p>
+            <li class="bold">Identify the VPN solutions to experiment on, control traffic, determine which metrics to use, choose the tools, and decide what data to collect</li>
+              <p class="paragraph">As mentioned earlier, the three VPN solutions selected for this test are OpenVPN, WireGuard, and IPSec. <span class="bold">It is important to note that the default configurations of these VPN solutions were used</span>. For all three VPN solutions, default settings were maintained wherever possible, rather than standardizing the settings across network protocols, cryptographic algorithms, or compression choices.</p>
               <p class="paragraph">The analysis also determined which metrics to use for testing. The lab setup was designed to be as simple as possible, while still ensuring one server and one client per operating system. This setup allows for control and monitoring of network traffic. The goal was to minimize external impacts on the network to ensure the most accurate and valid results.</p>
               <p class="paragraph">Network metrics for examining the VPNs are: <br />
-                - Throughput: Measured in Megabits per second (Mbps) <br />
-                - 400 ms Delay: Represents part 1 of unreliability <br />
-                - 1% Packet Loss: Represents part 2 of unreliability <br />
+                <span class="bold">- Throughput</span>: Measured in Megabits per second (Mbps) <br />
+                <span class="bold">- 400 ms Delay</span>: Represents part 1 of unreliability <br />
+                <span class="bold">- 1% Packet Loss</span>: Represents part 2 of unreliability <br />
               </p>
               <p class="paragraph">The tool used to measure network performance is iPerf3 (https://iperf.fr), version 3.1.3. The reason for choosing iPerf3 is that it effectively tests throughput and provides data on the number of packets transferred, including those that did not arrive. Since iPerf is available for Windows, Linux, and macOS, it is well-suited for this experiment, which is being conducted across all three operating systems.</p>
 
-            <li>Test the Network in the Experimental Setup Without Any VPN Solution to Identify Baseline Performance</li>
+            <li class="bold">Test the Network in the Experimental Setup Without Any VPN Solution to Identify a Baseline Performance</li>
             
 
-            <li>Configure and Test VPN Solutions on Three Different Operating Systems with Network Unreliability Conditions</li>
-            <p class="paragraph">Traffic shaping was used to introduce the network unreliability conditions. The unreliability testing was achieved by utilizing the traffic shaping tool on the pfSense router. The traffic shaper tool was configured to add a 400 ms delay as one unreliability condition and 1% packet loss as the other.</p>
+            <li class="bold">Configure and Test VPN Solutions on Three Different Operating Systems with Network Unreliability Conditions</li>
+            <p class="paragraph">The traffic shaper tool was configured to add a 400 ms delay as one unreliability condition and 1% packet loss as the other.</p>
             <p class="paragraph">Since all the data between the VPN clients and server is routed through the router, the traffic shaping applies in both directions. All clients were tested with three different setups:</p>
             <ol class="paragraph">
-              <li>Baseline Test: No unreliability added.</li>
-              <li>Unreliability #1: The 400 ms delay option.</li>
-              <li>Unreliability #2: The 1% packet loss option.</li>
+              <li><span class="bold">Baseline Test</span>: No unreliability added.</li>
+              <li><span class="bold">Unreliability #1</span>: The 400 ms delay option.</li>
+              <li><span class="bold">Unreliability #2</span>: The 1% packet loss option.</li>
             </ol>
 
 
-            <li><span class="important-text">Analyze and Compare the Results to Identify Performance Differences Between the VPN Solutions</li>
+            <li class="bold">Analyze and Compare the Results to Identify Performance Differences Between the VPN Solutions</li>
             </ol>
 
           
@@ -216,15 +226,12 @@
               <div class="line"></div>
           </header>
           
-          <p class="paragraph">The experiment test-bed setup consists of a machine acting as a software router running pfSense. The machine is equipped with two Network Interface Controllers (NICs), each capable of handling speeds up to 1 Gbps. Port 1 is connected to the VPN server, while Port 2 is connected to a switch that links the client network.</p>
-          <p class="paragraph">A switch was used between the router and the clients for simplicity during testing. This was necessary because the router only has two ports, which would require manually unplugging and re-plugging cables whenever another client was tested. Any delay introduced by the switch would be consistent across all clients and VPNs, so its impact on the results is considered negligible for this experiment.</p>
-
-          <p class="paragraph">After setting up the three VPN solutions on three different operating systems, the following table shows important aspects of the default configuration for each VPN:</p>
+          <p class="paragraph">After setting up the three VPN solutions on three different operating systems, the following table shows important aspects of the default configuration for each VPN that could impact the perform:</p>
 
           <ul class="paragraph">
-            <li>Encryption Algorithm: The performance of a VPN is significantly affected by the encryption algorithm used. Different algorithms have varying computational complexities, which can impact both the encryption/decryption speed and overall VPN performance.</li>
-            <li>Compression: Compression of the payload is another factor. By default, all the tested VPN solutions have payload compression disabled. Enabling compression can reduce the size of the data being transmitted, potentially improving performance, especially in environments with high latency or limited bandwidth.</li>
-            <li>Multi-threading: Multi-threading specifies whether the encryption and decryption processes can be distributed across multiple CPU cores. This feature allows parallel encryption on multiple cores, which could increase the speed of encryption and decryption, leading to better overall performance for the VPN.</li>
+            <li><span class="bold">Encryption Algorithm</span>: The performance of a VPN is significantly affected by the encryption algorithm used. Different algorithms have varying computational complexities, which can impact both the encryption/decryption speed and overall VPN performance.</li>
+            <li><span class="bold">Compression</span>: Compression of the payload is another factor. By default, all the tested VPN solutions have payload compression disabled. Enabling compression can reduce the size of the data being transmitted, potentially improving performance, especially in environments with high latency or limited bandwidth.</li>
+            <li><span class="bold">Multi-threading</span>: Multi-threading specifies whether the encryption and decryption processes can be distributed across multiple CPU cores. This feature allows parallel encryption on multiple cores, which could increase the speed of encryption and decryption, leading to better overall performance for the VPN.</li>
           </ul>
           
 
@@ -235,7 +242,7 @@
               </tbody>
                 <thead>
                     <tr>
-                      <th class="th"><span class="bold">Default configuration</span></th>
+                      <th class="th">Default configuration</th>
                       <th class="th">IPSec</th>
                       <th class="th">WireGuard</th>
                       <th class="th">OpenVPN</th>
@@ -262,7 +269,6 @@
                     </tr>
                 </tbody>
             </table>
-            <p class="paragraph">The router used in this experiment is a pfSense software router running FreeBSD 11.2-RELEASE-p10 (pfSense 2.4.4-RELEASE-p3). The reason for choosing this router is its capability to shape traffic directly using a tool called dummynet, which is built into pfSense. With dummynet, it is possible to introduce network unreliability aspects (such as delay and packet loss) directly between the VPN nodes. This approach eliminates the need for using dedicated tools or software on the individual nodes themselves, simplifying the setup and ensuring more accurate control over network conditions for the experiment.</p>
           </div>
         </article>
 
@@ -272,8 +278,8 @@
               <div class="line"></div>
           </header>
           
-          <p class="paragraph" style="margin-bottom: 0;">The tests are conducted using iPerf, which is available on all three operating systems. To evaluate how the VPN solutions perform under unreliable network conditions, the network will be intentionally degraded by shaping the traffic to drop a specified percentage of packets or by adding delay. The iPerf test will then be run to assess how each VPN implementation handles the network unreliability.</p>
-          <p class="paragraph">No inconsistencies are expected, as all VPNs are tested on the same operating systems, hardware, and using the same tool and configuration.</p>
+          <!-- <p class="paragraph" style="margin-bottom: 0;">The tests are conducted using iPerf, which is available on all three operating systems. To evaluate how the VPN solutions perform under unreliable network conditions, the network will be intentionally degraded by shaping the traffic to drop a specified percentage of packets or by adding delay. The iPerf test will then be run to assess how each VPN implementation handles the network unreliability.</p> -->
+          <!-- <p class="paragraph">No inconsistencies are expected, as all VPNs are tested on the same operating systems, hardware, and using the same tool and configuration.</p> -->
           
           <p class="paragraph">The image below illustrates the flow of the testing process:</p>
           <a target="_blank" href="./image.CS3C02.png">
@@ -282,20 +288,19 @@
           <!-- <p class="paragraph">The tests started without any VPN then the VPN solutions were enabled for the tests and disabled when it was done as seen in Figure 4. This flow chart was repeated three times, one loop for No VPN, one loop for Unreliability #1 and one loop for Unreliability #2.</p> -->
            <p class="paragraph">The testing procedure was structured as follows:</p>
            <ol class="paragraph">
-            <li>Initial Test (No VPN): The first round of testing was conducted without any VPN enabled. This provided a baseline for network performance.</li>
-            <li>Test with VPN Solutions: After establishing the baseline, each VPN solution (OpenVPN, WireGuard, and IPSec) was enabled and tested sequentially. During these tests, the performance metrics (throughput, latency, and packet loss) were measured with the VPNs active.</li>
-            <li>Test with Unreliability #1: Traffic shaping was applied to introduce a 400ms delay (Unreliability #1), and the VPN solutions were tested again under these conditions.</li>
-            <li>Test with Unreliability #2: In the final round, the traffic shaping tool introduced 1% packet loss (Unreliability #2), and the VPNs were tested once more.</li>
+            <li><span class="bold">Initial Test (No VPN)</span>: The first round of testing was conducted without any VPN enabled. This provided a baseline for network performance.</li>
+            <li><span class="bold">Test with VPN Solutions</span>: After establishing the baseline, each VPN solution (OpenVPN, WireGuard, and IPSec) was enabled and tested sequentially. During these tests, the performance metrics (throughput, latency, and packet loss) were measured with the VPNs active.</li>
+            <li><span class="bold">Test with Unreliability #1</span>: Traffic shaping was applied to introduce a 400ms delay (Unreliability #1), and the VPN solutions were tested again under these conditions.</li>
+            <li><span class="bold">Test with Unreliability #2</span>: In the final round, the traffic shaping tool introduced 1% packet loss (Unreliability #2), and the VPNs were tested once more.</li>
            </ol>
 
-           <p class="paragraph">This process was repeated for all three VPN solutions (OpenVPN, WireGuard, and IPSec), and the flow chart below shows the sequence of the tests:</p>
-           <p class="paragraph">Flow of Testing:</p>
+           <p class="paragraph">This process was repeated for all three VPN solutions (OpenVPN, WireGuard, and IPSec)</p>
+           <!-- <p class="paragraph">Flow of Testing:</p>
            <ol class="paragraph">
             <li>No VPN (Baseline)</li>
             <li>Unreliability #1 (400ms Delay)</li>
             <li>Unreliability #2 (1% Packet Loss)</li>
-           </ol>
-           <p class="paragraph">Each loop was repeated three times for consistency and accuracy.</p>
+           </ol> -->
 
         </article>
 
@@ -306,7 +311,7 @@
               <div class="line"></div>
           </header>
 
-          <p class="paragraph">The results are derived from the iPerf tests, where packets were sent from the client to the server, and the server received and reported the performance values. Each test was repeated 50 times per case to ensure accuracy and consistency. The following values were captured:</p>          
+          <p class="paragraph">The results presented are values from when iPerf sends the packets to the server and server receives and presents the values. All the results presented are the mean values of the 50 tests per case. The tests are on 36 different cases. A table of all 36 individual cases can be seen in table 3.:</p>          
           <a target="_blank" href="./result-table.png">
               <img src="./result-table.png" alt="result table" class="img">
           </a>
@@ -319,7 +324,7 @@
               <div class="line"></div>
           </header>
 
-          <p class="paragraph">To reiterate, the research question for this paper is: "How does performance differ between state-of-the-art VPN solutions under stable versus unreliable network conditions?" A definitive conclusion is that each implementation has its own advantages and disadvantages. Some VPN solutions perform better on certain operating systems. The most impactful conclusions drawn from the results are presented below.</p>          
+          <p class="paragraph">To reiterate, the research question for this paper is: <span style="font-style: italic;" class="bold">"How does performance differ between state-of-the-art VPN solutions under stable versus unreliable network conditions?"</span> A definitive conclusion is that each implementation has its own advantages and disadvantages. Some VPN solutions perform better on certain operating systems. The most impactful conclusions drawn from the results are presented below.</p>          
           
           <ul class="paragraph">
             <li>The best-performing VPN solution for macOS, if the network is reliable, was IPSec, followed by WireGuard, with OpenVPN performing the worst./li>
@@ -345,7 +350,7 @@
               <div class="line"></div>
           </header>
 
-          <p class="paragraph">Based on the results, a few recommendations for OS and VPN combinations emerged when using the default configuration. They can be seen in Table 6. The VPN in bold with a blue background is the overall recommended option for the specific network situation, as it had the best performance. The recommendations are as follows:</p>
+          <p class="paragraph">Based on the results, a few recommendations for OS and VPN combinations emerged when using the default configuration. They can be seen in the Table below. The VPN in bold with a blue background is the overall recommended option for the specific network situation, as it had the best performance. The recommendations are as follows:</p>
 
           <a target="_blank" href="./recommendation.png">
               <img src="./recommendation.png" alt="result table" class="img">
