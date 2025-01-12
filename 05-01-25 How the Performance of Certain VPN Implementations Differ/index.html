@@ -67,11 +67,11 @@
 
             <div>
               <p class="sub-header">VPN Tunnel</p>
-              <p class="paragraph">VPN connection is achieved using secure, encrypted "tunnels" called VPN tunnels. They are referred to as tunnels because they are established between two endpoints. When two routers are configured for tunneling, it becomes possible to send encrypted packets—packets that might not be supported over the general internet—between them. When set up correctly, these tunnels provide:</p>
+              <p class="paragraph">VPN connection is achieved using secure, encrypted "tunnels" called <span class="important-text">VPN tunnels</span>. They are referred to as tunnels because they are established between two endpoints. When two routers are configured for tunneling, it becomes possible to send encrypted packets that might not be supported over the general internet between them. <br/> When set up correctly, these tunnels provide:</p>
                 <ul class="paragraph">
-                  <li>Privacy: By not exposing the private network to the public internet.</li>
-                  <li>Security: By encrypting the packets shared through the tunnels. Anyone who gains access to the encrypted packets will not be able to read them. Only authorized users can decrypt and access the data.</li>
-                  <li>Data integrity: Through mechanisms that detect if the data has been tampered with during transport.</li>
+                  <li><span class="bold">Privacy</span>: By not exposing the private network to the public internet.</li>
+                  <li><span class="bold">Security</span>: By encrypting the packets shared through the tunnels. Anyone who gains access to the encrypted packets will not be able to read them. Only authorized users can decrypt and access the data.</li>
+                  <li><span class="bold">Data integrity</span>: Through mechanisms that detect if the data has been tampered with during transport.</li>
                 </ul>
                 <p class="paragraph">
                 Any network running such tunnel is running a Virture Private Network or VPN.</p>
@@ -80,21 +80,21 @@
             <div>
               <p class="sub-header">Types of VPN Tunneling</p>
               <ul class="paragraph">
-                <li>Host-to-network (Remote access) tunneling: Allows individual users to securely connect to a private network. This is commonly used by remote workers who need access to private company files.</li>
+                <li><span class="bold">Host-to-network (Remote access) tunneling</span>: Allows individual users to securely connect to a private network. This is commonly used by remote workers who need access to private company files.</li>
 
-                <li>Site-to-site tunneling: Connects entire networks, often used by companies with offices in different locations.</li>
+                <li><span class="bold">Site-to-site tunneling</span>: Connects entire networks, often used by companies with offices in different locations.</li>
 
-                <li>Split tunneling: Routes only specific traffic through the VPN, while other traffic is sent directly to the internet. This is useful for balancing security and speed.</li>
+                <li><span class="bold">Split tunneling</span>: Routes only specific traffic through the VPN, while other traffic is sent directly to the internet. This is useful for balancing security and speed.</li>
 
-                <li>Full tunneling: Routes all traffic through the VPN, providing maximum privacy and security.</li>
+                <li><span class="bold">Full tunneling</span>: Routes all traffic through the VPN, providing maximum privacy and security.</li>
               </ul>
             </div>
 
-            <div>
+            <!-- <div>
               <p class="sub-header">A Real-World Example of When VPNs Are Used</p>
               <p class="paragraph" style="margin-bottom: 0;">Imagine a company with offices in Chicago, New York, and Miami, each with its own local ISP (Internet Service Provider). The company can use VPN solutions to create secure and private "VPN tunnels" connecting these offices. This ensures secure communication and resource sharing among them, instead of transmitting sensitive company data directly over the public and untrusted internet.</p>
               <p class="paragraph">Similarly, VPNs offer the same solution for remote workers, allowing them to securely access company resources while working from home or other locations.</p>
-            </div>
+            </div> -->
 
             <blockquote class="definition">
               <p class="quote-paragraph">
@@ -142,7 +142,7 @@
                 <h1 class="topic" id="network-performance-metrics">Network Performance Metrics</h1>
                 <div class="line"></div>
             </header>            
-            <p class="paragraph">The key metrics used when testing networks are throughput, latency, and packet loss:</p>
+            <p class="paragraph">These are the key metrics used in this study when testing networks: <span class="important-text">throughput</span>, <span class="important-text">latency</span>, and <span class="important-text">packet loss</span>:</p>
 
             <ul class="paragraph">
               <li><span class="bold">Throughput</span>: This refers to how much data is sent from one point to another during a specific time frame. Throughput is typically measured in bits per second (bps). It is influenced by the entire infrastructure of the channel, including the physical medium (such as cabling) and computational power, among other factors.</li>
@@ -164,7 +164,7 @@
               <div class="line"></div>
           </header>
           
-          <p class="paragraph">The tool used for measuring network performance is iPerf.</p>
+          <p class="paragraph">The tool used for measuring network performance is <span class="important-text">iPerf</span>.</p>
 
           <p class="sub-header">iPerf</p>
           <p class="paragraph">iPerf is widely recognized as a reliable tool for testing VPN performance. In research conducted by Narayan, Brooking, and de Vere (2009), iPerf was used to measure the throughput of three different VPN solutions: PPTP, SSL (Secure Sockets Layer), and IPSec. Although the study is now outdated, the metrics measured are still relevant for evaluation today. The research concluded that network performance indeed depends on factors such as the operating system, the VPN solution, and the encryption algorithm chosen.</p>
@@ -177,10 +177,10 @@
               <div class="line"></div>
           </header>
           
-          <p class="paragraph">To accurately answer the research question—How does the performance differ between state-of-the-art VPN solutions under stable versus unreliable network conditions?—the following steps were taken: </p>
+          <p class="paragraph">To accurately answer the research question—<span style="font-style: italic;">How does the performance differ between state-of-the-art VPN solutions under stable versus unreliable network conditions?</span>—the following steps were taken: </p>
           
           <ol class="paragraph">
-            <li>Identify the VPN solutions to experiment on, control traffic, determine which metrics to use, choose the tools, and decide what data to collect</li>
+            <li><span class="bold">Identify the VPN solutions to experiment on, control traffic, determine which metrics to use, choose the tools, and decide what data to collect</span></li>
               <p class="paragraph">As mentioned earlier, the three VPN solutions selected for this test are OpenVPN, WireGuard, and IPSec. It is important to note that the default configurations of these VPN solutions were used. For all three VPN solutions, default settings were maintained wherever possible, rather than standardizing the settings across network protocols, cryptographic algorithms, or compression choices.</p>
               <p class="paragraph">The analysis also determined which metrics to use for testing. The lab setup was designed to be as simple as possible, while still ensuring one server and one client per operating system. This setup allows for control and monitoring of network traffic. The goal was to minimize external impacts on the network to ensure the most accurate and valid results.</p>
               <p class="paragraph">Network metrics for examining the VPNs are: <br />
