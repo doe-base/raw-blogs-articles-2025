@@ -38,51 +38,67 @@
             <div class="line"></div>
         </header>   
 
-        <p class="paragraph">Like many things in life, VPNs come with both advantages and disadvantages. One notable drawback is the latency and reduced network performance and speed they can introduce. Over the years, various VPN implementations have emerged, aiming to address these challenges.</p>
-        <p class="paragraph">This article delves into various state-of-the-art VPN implementations to evaluate the degree of performance degradation they experience. It is based on a 2019 study conducted by Thomas Fischer at the University of Skövde. The research question is as follow: <br> <span class="important-text">How does the performance differ between state-of-the-art VPN solutions under stable versus unreliable network conditions?</span></p>
+        <p class="paragraph">VPNs, like many tools in life, offer both advantages and drawbacks. A significant downside is the latency and reduced network performance they can sometimes cause. Over the years, various VPN implementations have been developed to tackle these challenges and improve overall efficiency.</p>
+        <p class="paragraph">This article explores several state-of-the-art VPN implementations to assess the extent of performance degradation they experience. It is based on a 2019 study conducted by Thomas Fischer at the University of Skövde. The research question is as follows: <br> <span class="important-text">How does the performance differ between state-of-the-art VPN solutions under stable versus unreliable network conditions?</span></p>
+
+        <div>
+          <p class="paragraph">What's in this article:</p>
+          <ul class="paragraph">
+            <li><a href="#what-are-vpn">What are Virtual Private Networks (VPNs)</a></li>
+            <li><a href="#different-vpn-solutions">Different VPN solutions</a></li>
+            <li><a href="#network-performance-metrics">Network performance metrics</a></li>
+            <li><a href="#tools-for-measurement">Tools for measurement</a></li>
+            <li><a href="#steps-for-the-experiment">Steps for the experiment</a></li>
+            <li><a href="#the-experiment">The experiment</a></li>
+            <li><a href="#testing">Testing</a></li>
+            <li><a href="#results">Results</a></li>
+            <li><a href="#observations">Observations</a></li>
+            <li><a href="#conclusion">Conclusion</a></li>
+          </ul>
+        </div>
       </article>
 
         <article>
             <header class="header">
-                <h1 class="topic">What are Virtural Private Netowrks (VPNs)</h1>
+                <h1 class="topic" id="what-are-vpn">What are Virtual Private Networks (VPNs)</h1>
                 <div class="line"></div>
             </header>            
-            <p class="paragraph">A Virture Private Network is a technology used to extend a Private Network through the internet so that authrised users (usually with a shared secret such as a password) may have access to it as if they where directly connected. It makes these "authrised users" appear directly connected to the Private Network even tho they are throusands of miles and many router hops away.</p>
+            <p class="paragraph">A Virtual Private Network (VPN) is a technology used to extend a private network over the internet, allowing authorized users (typically authenticated with a shared secret such as a password) to access it as if they were directly connected. This makes these "authorized users" appear to be connected to the private network, even though they may be thousands of miles and numerous router hops away.</p>
 
             <div>
               <p class="sub-header">VPN Tunnel</p>
-              <p class="paragraph">This type of connections are acheve using secure, encripted “tunnels” called VPN tunnels. They are refferted to as tunnels because they are established between two enpoint. If two routers have tunneling configured, it is possible to send encripted packets that might not be support over the general internet between them. If setup correct these tunnels provide:</p>
+              <p class="paragraph">VPN connection is achieved using secure, encrypted "tunnels" called VPN tunnels. They are referred to as tunnels because they are established between two endpoints. When two routers are configured for tunneling, it becomes possible to send encrypted packets—packets that might not be supported over the general internet—between them. When set up correctly, these tunnels provide:</p>
                 <ul class="paragraph">
-                  <li>"privacy" by not exposing the private network to the public Internet</li>
-                  <li>"security" by encripting the packets shared thought the tunnes. Any body that get asscc to encripted packets will not be able to read them. Only authrised users can read the packets.</li>
-                  <li>"data intergrity" through mechnisims that dectect if data was termpered with during transport.</li>
+                  <li>Privacy: By not exposing the private network to the public internet.</li>
+                  <li>Security: By encrypting the packets shared through the tunnels. Anyone who gains access to the encrypted packets will not be able to read them. Only authorized users can decrypt and access the data.</li>
+                  <li>Data integrity: Through mechanisms that detect if the data has been tampered with during transport.</li>
                 </ul>
                 <p class="paragraph">
-                Any network running such tunnel is running a Virture Private Network or VPN. More on VPN tunnels later. </p>
+                Any network running such tunnel is running a Virture Private Network or VPN.</p>
             </div>
 
             <div>
-              <p class="sub-header">Types of VPN Tunnelling</p>
+              <p class="sub-header">Types of VPN Tunneling</p>
               <ul class="paragraph">
-                <li>Host-to-network or Remote access tunneling: Allows individual users to connect securely to a private network. Common for remote workers that need access to private compnaey files.</li>
+                <li>Host-to-network (Remote access) tunneling: Allows individual users to securely connect to a private network. This is commonly used by remote workers who need access to private company files.</li>
 
-                <li>Site-to-site tunneling: Connects entire networks. Common for Compnaies with diffrent offices in diffrent locations.</li>
+                <li>Site-to-site tunneling: Connects entire networks, often used by companies with offices in different locations.</li>
 
-                <li>Split tunneling: Routes only specific traffic through the VPN, while other traffic goes directly to the internet. Useful for balancing security and speed.</li>
+                <li>Split tunneling: Routes only specific traffic through the VPN, while other traffic is sent directly to the internet. This is useful for balancing security and speed.</li>
 
-                <li>Full tunneling: Routes all trafic through the VPN. Provides maximum privacy and security.</li>
+                <li>Full tunneling: Routes all traffic through the VPN, providing maximum privacy and security.</li>
               </ul>
             </div>
 
             <div>
-              <p class="sub-header">A real world example of when VPN are used</p>
-              <p class="paragraph" style="margin-bottom: 0;">Suppose that a company has offices in Chicago, New York, and Miami. With each of this offices having their own local ISP [Internet Service Provied]. The compnay can employ VPN solutions to create a secure and private "VPN tunnel" connecting each offies, ensuring secure communication and resource sharing among them instead of shearing company's data directly over the public and untrusted internet.</p>
-              <p class="paragraph">VPNs provided the same solution for remote workers working from home or a diffrent location.</p>
+              <p class="sub-header">A Real-World Example of When VPNs Are Used</p>
+              <p class="paragraph" style="margin-bottom: 0;">Imagine a company with offices in Chicago, New York, and Miami, each with its own local ISP (Internet Service Provider). The company can use VPN solutions to create secure and private "VPN tunnels" connecting these offices. This ensures secure communication and resource sharing among them, instead of transmitting sensitive company data directly over the public and untrusted internet.</p>
+              <p class="paragraph">Similarly, VPNs offer the same solution for remote workers, allowing them to securely access company resources while working from home or other locations.</p>
             </div>
 
             <blockquote class="definition">
               <p class="quote-paragraph">
-                  Side Note: VPN provide securty between two enpoint, it doest not secure the enpoint them self. This is a urge security risk on it own because every enpoint with access to your VPN has access to your Private Network. Other sercurty major will be needed to provide enpoint point security.
+                Side Note: VPNs provide security between two endpoints, but they do not secure the endpoints themselves. This poses a significant security risk because every endpoint with access to your VPN also has access to your private network. Additional security measures are necessary to ensure endpoint security and protect the network from potential vulnerabilities.
               </p>
             </blockquote>
         </article>
@@ -90,10 +106,10 @@
 
         <article>
           <header class="header">
-            <h1 class="topic">Different VPN solutions</h1>
+            <h1 class="topic" id="different-vpn-solutions">Different VPN Solutions</h1>
             <div class="line"></div>
           </header>
-          <p class="paragraph">There are dozens of diffrent VPN solutions out there. But 3 stand out as the most popular and are used for this study including: </p>
+          <p class="paragraph">There are numerous VPN solutions available, but three stand out as the most popular and were used for this study: </p>
           <ul class="paragraph">
             <li class="bold">IPSec (IP Security Protocol)</li>
             <li class="bold">OpenVPN</li>
@@ -102,92 +118,92 @@
           
           <div>
             <p class="sub-header">IPsec (IP Security Protocol)</p>
-            <p class="paragraph">IPSec was standardized by the Internet Engeenring Task Force (IETF) in 1995. It IPsec was originally developed for IPv6, but it has also been widely implemented for IPv4. IPsec is an IETF approved, end-to-end authentication and encryption system. Almost all serious VPN vendors ship a product that has at least an IPsec compatibility mode. Linux, Solaris, HP-UX, and AIX all include native kernel support for IPsec.</p>
-            <p class="paragraph">In tunnel mode, IPsec encrypts the transport layer header, which includes the
-              source and destination port numbers. Unfortunately, this scheme conflicts with
-              the way in which most firewalls work. For this reason, most modern implementa-
-              tions default to using transport mode, in which only the payloads of packets (the
-              data being transported) are encrypted.</p>
+            <p class="paragraph">IPsec was standardized by the Internet Engineering Task Force (IETF) in 1995. Originally developed for IPv6, it has also been widely implemented for IPv4. IPsec is an IETF-approved end-to-end authentication and encryption system. Almost all major VPN vendors include at least an IPsec compatibility mode in their products. Additionally, operating systems like Linux, Solaris, HP-UX, and AIX provide native kernel support for IPsec.</p>
+            <p class="paragraph">In tunnel mode, IPsec encrypts the transport layer header, which includes source and destination port numbers. However, this approach often conflicts with how most firewalls operate. To address this issue, most modern implementations default to transport mode, where only the payloads of packets (the data being transported) are encrypted.</p>
           </div>
 
           <div>
             <p class="sub-header">OpenVPN</p>
-            <p class="paragraph">OpenVPN has become the de facto standard in VPNs today with more than 50 million downloads since its release in 2001 (OpenVPN, 2019). It uses SSL/TLS for key exchange and encryption. OpenVPN is open source, it is secure by the extensive scrutiny it gets by being accessible to anyone who wishes to review the code. In 2017 an independent review of OpenVPN was performed by Cryptography Engineering (Hopkins and Green, 2019), the results found no major vulnerabilities. It supports both TCP and UDP but defaults at UDP. UDP is faster but does not perform error correction as TCP. OpenVPN is fully functional on Windows, macOS and Linux. There is plenty of ciphers and encryption methods to choose from.</p>
+            <p class="paragraph">OpenVPN has become the de facto standard for VPNs today, with over 50 million downloads since its release in 2001 (OpenVPN, 2019). It uses SSL/TLS for key exchange and encryption. OpenVPN is open-source, which contributes to its security through the extensive scrutiny it undergoes, as anyone can review the code. In 2017, an independent review of OpenVPN was conducted by Cryptography Engineering (Hopkins and Green, 2019), and the results found no major vulnerabilities.</p>
+            <p class="paragraph">OpenVPN supports both TCP and UDP, with UDP as the default. While UDP is faster, it does not perform error correction like TCP does. OpenVPN is fully functional on Windows, macOS, and Linux, and offers a wide range of ciphers and encryption methods to choose from.</p>
           </div>
 
           <div>
             <p class="sub-header">WireGuard</p>
-            <p class="paragraph">WireGuard is the name of a new VPN that aims to replace two of the most widely used VPN solutions, namely OpenVPN and IPSec (Donenfeld, 2018). It claims to be more useful than IPSec while avoiding the complexity of it and by having better performance than OpenVPN. It was originally written for Linux systems but is now available across more platforms. It is also open source like OpenVPN and IPSec, so it also benefits of being open to view for anyone with the knowledge to audit it. It is a design goal to have an overall straight forward configuration like SSH, i.e asymmetric key cryptography. Wireguard is currently UDP only (Donenfeld, 2018).</p>
+            <p class="paragraph">WireGuard is a new VPN solution designed to replace two of the most widely used VPN technologies: OpenVPN and IPSec (Donenfeld, 2018). It claims to offer better performance than OpenVPN while avoiding the complexity of IPSec. Originally written for Linux systems, WireGuard is now available on multiple platforms. Like OpenVPN and IPSec, it is open-source, allowing anyone with the knowledge to audit the code. One of its design goals is to offer a straightforward configuration, similar to SSH, using asymmetric key cryptography. Currently, WireGuard supports only UDP (Donenfeld, 2018).</p>
           </div>
 
-          <p class="paragraph"><span class="bold">Some other VPN Solutions include:</span> PPTP (Point to Point Tunneling Protocol), SSTP (Secure Socket Tunneling Protocol), OpenSSH (Open Secure Shell)</p>
+          <p class="paragraph"><span class="bold">Some other VPN solutions include: PPTP (Point-to-Point Tunneling Protocol), SSTP (Secure Socket Tunneling Protocol), and OpenSSH (Open Secure Shell).</p>
           
         </article>
 
         <article>
             <header class="header">
-                <h1 class="topic">Network Performance Metrics</h1>
+                <h1 class="topic" id="network-performance-metrics">Network Performance Metrics</h1>
                 <div class="line"></div>
             </header>            
-            <p class="paragraph">The metrics used when testing networks are: <span class="important-text">throughput</span>, <span class="important-text">latency</span> and <span class="important-text">packet loss</span></p>
+            <p class="paragraph">The key metrics used when testing networks are throughput, latency, and packet loss:</p>
 
             <ul class="paragraph">
-              <li><span class="bold">Throughput</span>: is how much data is sent from one point to another during a certain time frame. Throughput is usually measured in bits per second (bps). It is affected by the whole infrastructure of the channel such as the physical medium (cabling) and computational power among other factors.</li>
+              <li><span class="bold">Throughput</span>: This refers to how much data is sent from one point to another during a specific time frame. Throughput is typically measured in bits per second (bps). It is influenced by the entire infrastructure of the channel, including the physical medium (such as cabling) and computational power, among other factors.</li>
 
-              <li><span class="bold">Latency</span>: is defined as the time it takes to transmit a packet in one direction, for example client to server. In VPN testing latency is in a time value, usually measured in seconds milliseconds (ms).</li>
+              <li><span class="bold">Latency</span>: Latency is the time it takes to transmit a packet in one direction (e.g., from client to server). In VPN testing, latency is expressed as a time value, usually measured in milliseconds (ms).</li>
 
-              <li><span class="bold">Packet loss</span>: is a metric that refers to how many packets are “lost” i.e did not arrive from source to destination. This can be caused due to congestion on the network for example. It is measured as a percentage of packet lost with respect to packets sent.</li>
+              <li><span class="bold">Packet loss</span>: This metric refers to how many packets are “lost,” meaning they did not arrive from the source to the destination. Packet loss can occur due to network congestion, among other reasons. It is measured as a percentage of packets lost relative to the total packets sent.</li>
             </ul>
 
-            <p class="sub-header">Unreliability handling</p>
-            <p class="paragraph">Unreliability handling is a description of how the network handles disturbances. These disturbances may be artificial or natural such as high latency or packet loss. It can be quantifiable by limiting of the aforementioned metrics.</p>
-            <p class="paragraph">An example is a Remote worker working with an Unreliabile network connection.The unreliability of a network could be a fluctuating connection such as cellular on a moving train that is traveling far from cities that have good infrastructure or traveling through mountains. It could also be a remote worker, who is working very far away from the office while requiring access to files across the world. This would add delay that is way above the usual packet transfer delay that one might expect while working with files that are on a server in the same building. Therefore it is important to investigate how the current VPNs compare on unreliable networks.</p>
+            <p class="sub-header">Unreliability Handling</p>
+            <p class="paragraph">Unreliability handling refers to how a network manages disturbances, which can be either artificial or natural, such as high latency or packet loss. These disturbances can be quantified by limiting the aforementioned metrics.</p>
+            <p class="paragraph">For example, consider a remote worker with an unreliable network connection. The unreliability of a network could stem from fluctuating connections, such as cellular networks on a moving train traveling through areas with poor infrastructure or through mountains. It could also involve a remote worker located far from the office, requiring access to files stored across the globe. This would introduce delays far beyond the typical packet transfer delay expected when working with files stored on a server in the same building.</p>
+            <p class="paragraph">Therefore, it is crucial to investigate how different VPN solutions perform on unreliable networks.</p>
         </article>
 
         <article>
           <header class="header">
-              <h1 class="topic">Tool for Measuring</h1>
+              <h1 class="topic" id="tools-for-measurement">Tools for Measurement</h1>
               <div class="line"></div>
           </header>
           
-          <p class="paragraph">The tool for measuring them is <span class="important-text">iPerf</span>.</p>
+          <p class="paragraph">The tool used for measuring network performance is iPerf.</p>
 
           <p class="sub-header">iPerf</p>
-          <p class="paragraph">iPerf was identified in related research as the tool to test the performance of VPNs. In a research by Narayan, Brooking and de Vere (2009), the authors used iPerf to measure the throughput on three different VPN solutions. The VPNs used in this research are PPTP, SSL (Secure Sockets Layer) and IPSec. While the study is outdated by now, the measure metrics are still valid for evaluation today. That research concluded that the network performance does indeed depend on what OS, VPN solution and encryption algorithm is chosen.</p>
+          <p class="paragraph">iPerf is widely recognized as a reliable tool for testing VPN performance. In research conducted by Narayan, Brooking, and de Vere (2009), iPerf was used to measure the throughput of three different VPN solutions: PPTP, SSL (Secure Sockets Layer), and IPSec. Although the study is now outdated, the metrics measured are still relevant for evaluation today. The research concluded that network performance indeed depends on factors such as the operating system, the VPN solution, and the encryption algorithm chosen.</p>
         </article>
 
 
         <article>
           <header class="header">
-              <h1 class="topic">Steps for the Experiment</h1>
+              <h1 class="topic" id="steps-for-the-experiment">Steps for the Experiment</h1>
               <div class="line"></div>
           </header>
           
-          <p class="paragraph">To accuratly answer the experiment question ( <span class="important-text">How does the performance differ between state-of-the-art VPN solutions under stable versus unreliable
-            network conditions?</span> ), we need to follow these steps: </p>
+          <p class="paragraph">To accurately answer the research question—How does the performance differ between state-of-the-art VPN solutions under stable versus unreliable network conditions?—the following steps were taken: </p>
           
           <ol class="paragraph">
-            <li><span class="important-text">Identify</span> what VPN solutions to experiment on, how to control traffic, what metrics to use, with which tools and what data to collect</li>
-              <p class="paragraph">As metion ealiar, the 3 VPN solution use for this test are OpenVPN, WireGuard and IPSec. A very important fact is that the configurations of the VPN solutions are default For all VPN solutions, default configuration settings were kept as far as possible, rather than unifying the settings in respect to, for example, network protocols, cryptographic algorithms, or choices for compression.</p>
-              <p class="paragraph">The analysis also presented what metrics to use in the testing. The lab set up was chosen to be as simple as possible but still having one server and one client per OS and to be able to control and monitor the network traffic. This was done to minimize outside impact on the network and to have as valid results as possible.</p>
+            <li>Identify the VPN solutions to experiment on, control traffic, determine which metrics to use, choose the tools, and decide what data to collect</li>
+              <p class="paragraph">As mentioned earlier, the three VPN solutions selected for this test are OpenVPN, WireGuard, and IPSec. It is important to note that the default configurations of these VPN solutions were used. For all three VPN solutions, default settings were maintained wherever possible, rather than standardizing the settings across network protocols, cryptographic algorithms, or compression choices.</p>
+              <p class="paragraph">The analysis also determined which metrics to use for testing. The lab setup was designed to be as simple as possible, while still ensuring one server and one client per operating system. This setup allows for control and monitoring of network traffic. The goal was to minimize external impacts on the network to ensure the most accurate and valid results.</p>
               <p class="paragraph">Network metrics for examining the VPNs are: <br />
-                - Throughput - Megabits per second (Mbps) <br />
-                - 400 msec Delay (part 1 of unreliability) <br />
-                - 1% Packet loss (part 2 of unreliability) <br />
+                - Throughput: Measured in Megabits per second (Mbps) <br />
+                - 400 ms Delay: Represents part 1 of unreliability <br />
+                - 1% Packet Loss: Represents part 2 of unreliability <br />
               </p>
-              <p class="paragraph">The tool used to measure network performance is iPerf3 (https://iperf.fr) version 3.1.3. The reason behind this is that it fulfills the need to test throughput and it contains the data transferred i.e it is possible to see how many packets did not arrive. Since iPerf is available for Windows, Linux and macOS, it is fitting for this experiment as it is being done on all three different OSs.</p>
+              <p class="paragraph">The tool used to measure network performance is iPerf3 (https://iperf.fr), version 3.1.3. The reason for choosing iPerf3 is that it effectively tests throughput and provides data on the number of packets transferred, including those that did not arrive. Since iPerf is available for Windows, Linux, and macOS, it is well-suited for this experiment, which is being conducted across all three operating systems.</p>
 
-            <li>Test the network in the experimental setup <span class="important-text">without any VPN   solution</span> to identify baseline performance</li>
-
+            <li>Test the Network in the Experimental Setup Without Any VPN Solution to Identify Baseline Performance</li>
             
 
-            <li>Configure and test VPN Solutions <span class="important-text">on three different operating systems</span> with the network unreliability conditions</li>
-            <p class="paragraph"><span class="bold">Trafic Shaping</span> was use to introduce the network unreliability conditions. The unreliability testing was achieved by utilizing the traffic shaping tool on the pfSense router. The traffic shaper tool was configured to add 400msec delay as one unreliability and 1% packet loss as the other.</p>
-            <p class="paragraph">Since all the data between the VPN clients and server is routed through the router, it applies the traffic shaping both ways. All clients were tested with all three different setups, namely; baseline test which had no unreliability added. Unreliability #1 is the 400msec delay option and unreliability #2 is the 1% packet loss option.</p>
+            <li>Configure and Test VPN Solutions on Three Different Operating Systems with Network Unreliability Conditions</li>
+            <p class="paragraph">Traffic shaping was used to introduce the network unreliability conditions. The unreliability testing was achieved by utilizing the traffic shaping tool on the pfSense router. The traffic shaper tool was configured to add a 400 ms delay as one unreliability condition and 1% packet loss as the other.</p>
+            <p class="paragraph">Since all the data between the VPN clients and server is routed through the router, the traffic shaping applies in both directions. All clients were tested with three different setups:</p>
+            <ol class="paragraph">
+              <li>Baseline Test: No unreliability added.</li>
+              <li>Unreliability #1: The 400 ms delay option.</li>
+              <li>Unreliability #2: The 1% packet loss option.</li>
+            </ol>
 
 
-
-            <li><span class="important-text">Analyze and compare the results</span> to see if there is any indication of performance difference between the VPN solutions</li>
+            <li><span class="important-text">Analyze and Compare the Results to Identify Performance Differences Between the VPN Solutions</li>
             </ol>
 
           
@@ -196,18 +212,19 @@
 
         <article>
           <header class="header">
-              <h1 class="topic">The Experiment</h1>
+              <h1 class="topic" id="the-experiment">The Experiment</h1>
               <div class="line"></div>
           </header>
           
-          <p class="paragraph">The experiment test-bed setup consists of one machine acting as a software router running pfSense. It has two NICs (Network Interface Controller) that can each handle speeds up to 1Gbs. Port 1 is connected to the VPN server and port 2 to a switch connecting the client network. A switch between the router and the clients was used in the setup for simplicity with testing, because the router only had two ports and would therefore have to be manually unplugged and plugged whenever another client was tested. If the switch introduced any delay it would have been the same for all clients and VPNs and thus the addition of it is negligible for this experiment.</p>
+          <p class="paragraph">The experiment test-bed setup consists of a machine acting as a software router running pfSense. The machine is equipped with two Network Interface Controllers (NICs), each capable of handling speeds up to 1 Gbps. Port 1 is connected to the VPN server, while Port 2 is connected to a switch that links the client network.</p>
+          <p class="paragraph">A switch was used between the router and the clients for simplicity during testing. This was necessary because the router only has two ports, which would require manually unplugging and re-plugging cables whenever another client was tested. Any delay introduced by the switch would be consistent across all clients and VPNs, so its impact on the results is considered negligible for this experiment.</p>
 
-          <p class="paragraph">After setting up the three VPN on 3 OS. Here is a table show important default aspect of default configuration of the VPNs:</p>
+          <p class="paragraph">After setting up the three VPN solutions on three different operating systems, the following table shows important aspects of the default configuration for each VPN:</p>
 
           <ul class="paragraph">
-            <li>One of the aspects is the algorithm for the data encryption, the performance of a VPN is affected by what encryption is used.</li>
-            <li>The second one is if compression of the payload is enabled, which by default is disabled on all the tested VPN solutions.</li>
-            <li>Lastly multi-threading, this specifies if the encryption and decryption process is able to be done on multiple CPU cores. This option gives the VPN the ability to perform parallel encryptions on multiple CPU cores, which cloud increase the speed of encryption and description.</li>
+            <li>Encryption Algorithm: The performance of a VPN is significantly affected by the encryption algorithm used. Different algorithms have varying computational complexities, which can impact both the encryption/decryption speed and overall VPN performance.</li>
+            <li>Compression: Compression of the payload is another factor. By default, all the tested VPN solutions have payload compression disabled. Enabling compression can reduce the size of the data being transmitted, potentially improving performance, especially in environments with high latency or limited bandwidth.</li>
+            <li>Multi-threading: Multi-threading specifies whether the encryption and decryption processes can be distributed across multiple CPU cores. This feature allows parallel encryption on multiple cores, which could increase the speed of encryption and decryption, leading to better overall performance for the VPN.</li>
           </ul>
           
 
@@ -226,7 +243,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="td"><span class="bold">Algorithm for encrypting data</span></td>
+                        <td class="td"><span class="bold">Encryption Algorithm</span></td>
                         <td class="td">AES-256</td>
                         <td class="td">ChaCha20</td>
                         <td class="td">AES-256-GCM</td>
@@ -245,34 +262,51 @@
                     </tr>
                 </tbody>
             </table>
-            <p class="paragraph">The router in this experiment is a pfSense FreeBSD 11.2-RELEASE-p10 (pfSense 2.4.4-RELEASE-p3) software router. The reason I chose this router is due to the fact that it is possible to shape the traffic directly on the router using the tool that comes with pfSense called dummynet. With dummynet it is possible to add the unreliability aspects of the testing directly between the VPN nodes without having to use a dedicated tool or software on the nodes.</p>
+            <p class="paragraph">The router used in this experiment is a pfSense software router running FreeBSD 11.2-RELEASE-p10 (pfSense 2.4.4-RELEASE-p3). The reason for choosing this router is its capability to shape traffic directly using a tool called dummynet, which is built into pfSense. With dummynet, it is possible to introduce network unreliability aspects (such as delay and packet loss) directly between the VPN nodes. This approach eliminates the need for using dedicated tools or software on the individual nodes themselves, simplifying the setup and ensuring more accurate control over network conditions for the experiment.</p>
           </div>
         </article>
 
         <article>
           <header class="header">
-              <h1 class="topic">Testing</h1>
+              <h1 class="topic" id="testing">Testing</h1>
               <div class="line"></div>
           </header>
           
-          <p class="paragraph" style="margin-bottom: 0;">The tests are done with iPerf which is available on all three OSs. To test how the VPN solutions differ in unreliable network conditions, the network will be degraded by shaping the traffic to drop a certain percentage of packets or adding delay while performing an iPerf test to see how the VPN implementations handle the unreliability.</p>
-          <p class="paragraph">No inconcistencies are expected due to the fact that all VPNs are tested on the same OS and the same hardware with the same tool and configuration of the tool.</p>
+          <p class="paragraph" style="margin-bottom: 0;">The tests are conducted using iPerf, which is available on all three operating systems. To evaluate how the VPN solutions perform under unreliable network conditions, the network will be intentionally degraded by shaping the traffic to drop a specified percentage of packets or by adding delay. The iPerf test will then be run to assess how each VPN implementation handles the network unreliability.</p>
+          <p class="paragraph">No inconsistencies are expected, as all VPNs are tested on the same operating systems, hardware, and using the same tool and configuration.</p>
           
-          <p class="paragraph">The image below shows the flow of testing:</p>
+          <p class="paragraph">The image below illustrates the flow of the testing process:</p>
           <a target="_blank" href="./image.CS3C02.png">
               <img src="./image.CS3C02.png" alt="testing flow chat" class="img">
           </a>
-          <p class="paragraph">The tests started without any VPN then the VPN solutions were enabled for the tests and disabled when it was done as seen in Figure 4. This flow chart was repeated three times, one loop for No VPN, one loop for Unreliability #1 and one loop for Unreliability #2.</p>
+          <!-- <p class="paragraph">The tests started without any VPN then the VPN solutions were enabled for the tests and disabled when it was done as seen in Figure 4. This flow chart was repeated three times, one loop for No VPN, one loop for Unreliability #1 and one loop for Unreliability #2.</p> -->
+           <p class="paragraph">The testing procedure was structured as follows:</p>
+           <ol class="paragraph">
+            <li>Initial Test (No VPN): The first round of testing was conducted without any VPN enabled. This provided a baseline for network performance.</li>
+            <li>Test with VPN Solutions: After establishing the baseline, each VPN solution (OpenVPN, WireGuard, and IPSec) was enabled and tested sequentially. During these tests, the performance metrics (throughput, latency, and packet loss) were measured with the VPNs active.</li>
+            <li>Test with Unreliability #1: Traffic shaping was applied to introduce a 400ms delay (Unreliability #1), and the VPN solutions were tested again under these conditions.</li>
+            <li>Test with Unreliability #2: In the final round, the traffic shaping tool introduced 1% packet loss (Unreliability #2), and the VPNs were tested once more.</li>
+           </ol>
+
+           <p class="paragraph">This process was repeated for all three VPN solutions (OpenVPN, WireGuard, and IPSec), and the flow chart below shows the sequence of the tests:</p>
+           <p class="paragraph">Flow of Testing:</p>
+           <ol class="paragraph">
+            <li>No VPN (Baseline)</li>
+            <li>Unreliability #1 (400ms Delay)</li>
+            <li>Unreliability #2 (1% Packet Loss)</li>
+           </ol>
+           <p class="paragraph">Each loop was repeated three times for consistency and accuracy.</p>
+
         </article>
 
 
         <article>
           <header class="header">
-              <h1 class="topic">Results</h1>
+              <h1 class="topic" id="results">Results</h1>
               <div class="line"></div>
           </header>
 
-          <p class="paragraph">The results presented are values from when iPerf sends the packets to the server and server receives and presents the values. All the results presented are the mean values of the 50 tests per case.</p>          
+          <p class="paragraph">The results are derived from the iPerf tests, where packets were sent from the client to the server, and the server received and reported the performance values. Each test was repeated 50 times per case to ensure accuracy and consistency. The following values were captured:</p>          
           <a target="_blank" href="./result-table.png">
               <img src="./result-table.png" alt="result table" class="img">
           </a>
@@ -281,38 +315,37 @@
 
         <article>
           <header class="header">
-              <h1 class="topic">Observation</h1>
+              <h1 class="topic" id="observations">Observation</h1>
               <div class="line"></div>
           </header>
 
-          <p class="paragraph">To reiterate, the research question for this paper is: “How does the performance differ between state-of-the-art VPN solutions under stable versus unreliable network conditions?” A definitive conclusion is that all implementations have their own advantages and disadvantages. Some VPN solutions perform better on a certain operating system. The most impactful conclusions drawn by the results are presented below.</p>          
+          <p class="paragraph">To reiterate, the research question for this paper is: "How does performance differ between state-of-the-art VPN solutions under stable versus unreliable network conditions?" A definitive conclusion is that each implementation has its own advantages and disadvantages. Some VPN solutions perform better on certain operating systems. The most impactful conclusions drawn from the results are presented below.</p>          
           
           <ul class="paragraph">
-            <li>The best performing VPN solutionhe best performing VPN solution f for macOSor macOS, , if the network is reliableif the network is reliable, , was IPSec was IPSec followed byfollowed by WireGuard and WireGuard and worst performing wasworst performing was OpenVPNOpenVPN</li>
+            <li>The best-performing VPN solution for macOS, if the network is reliable, was IPSec, followed by WireGuard, with OpenVPN performing the worst./li>
 
-            <li>We can see that with any of the unreliability variables in effect, , all VPNall VPNs and OSs had reduced s and OSs had reduced throughput in comparison with no unreliabilitythroughput in comparison with no unreliability</li>
+            <li>We can see that with any of the unreliability variables in effect, all VPNs and operating systems had reduced throughput compared to no unreliability.</li>
 
-            <li>LinuxLinux is fastest with the baseline and no unreliability at 9is fastest with the baseline and no unreliability at 943.543.5Mbits/secMbits/sec</li>
+            <li>Linux is fastest with the baseline and no unreliability at 943.5Mbits/sec</li>
 
-            <li>- All VPNs except OpenVPN perAll VPNs except OpenVPN perform best in Linux during the delay unreliability when comparing form best in Linux during the delay unreliability when comparing the other OSs under delaythe other OSs under delay
-            </li>
+            <li>All VPNs except OpenVPN perform best in Linux during the delay unreliability when comparing the other OSs under delay</li>
 
-            <li>All VPNs perform best in Linux while experiencing packet lossAll VPNs perform best in Linux while experiencing packet loss</li>
+            <li>All VPNs perform best in Linux while experiencing packet loss</li>
 
-            <li>OpenVPN is not the top performer in any testOpenVPN is not the top performer in any test</li>
+            <li>OpenVPN is not the top performer in any test</li>
 
-            <li>Linux performs best in all unreliaLinux performs best in all unreliability tests except one, the unreliability #1 bility tests except one, the unreliability #1 – – delay delay</li>
+            <li>Linux performs best in all unreliability tests except one, the unreliability #1 – delay</li>
           </ul>
 
         </article>
 
         <article>
           <header class="header">
-              <h1 class="topic">Conclution</h1>
+              <h1 class="topic" id="conclusion">Conclusion</h1>
               <div class="line"></div>
           </header>
 
-          <p class="paragraph">Based on the results a few recommendations for OS and VPN combination emerged when using the default configuration. They can be seen in Table 6, the VPN in bold/blue background is the overall recommended for the specific network situation as it had the best performance. The recommendation is the following:</p>
+          <p class="paragraph">Based on the results, a few recommendations for OS and VPN combinations emerged when using the default configuration. They can be seen in Table 6. The VPN in bold with a blue background is the overall recommended option for the specific network situation, as it had the best performance. The recommendations are as follows:</p>
 
           <a target="_blank" href="./recommendation.png">
               <img src="./recommendation.png" alt="result table" class="img">
