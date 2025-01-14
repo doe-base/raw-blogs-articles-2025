@@ -16,7 +16,7 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/monokai.min.css"
   />
     <link rel="stylesheet" href="./style.css">
-    <title>How the Performance of Certain VPN Implementations Differ</title>
+    <title>Comparing VPN Performance: State-of-the-Art Solutions in Stable vs. Unreliable Networks</title>
 </head>
 <style>
     .hljs {
@@ -38,7 +38,7 @@
             <div class="line"></div>
         </header>   
 
-        <p class="paragraph">VPNs, like many tools in life, offer both advantages and drawbacks. A significant downside is the latency and reduced network performance they can sometimes cause. Over the years, various VPN implementations have been developed to tackle these challenges and improve overall efficiency.</p>
+        <p class="paragraph">VPNs, like many tools in technology, offer both advantages and drawbacks. A significant downside is the latency and reduced network performance they can sometimes cause. Over the years, various VPN implementations have been developed to tackle these challenges and improve overall efficiency.</p>
         <p class="paragraph">This article explores several state-of-the-art VPN implementations to assess the extent of performance degradation they experience. It is based on a 2019 study conducted by Thomas Fischer at the University of Skövde. The research question is as follows: <br> <span class="important-text">How does the performance differ between state-of-the-art VPN solutions under stable versus unreliable network conditions?</span></p>
 
         <div>
@@ -49,7 +49,7 @@
             <li><a href="#network-performance-metrics" class="blog-link">Network performance metrics</a></li>
             <li><a href="#tools-for-measurement" class="blog-link">Tools for measurement</a></li>
             <li><a href="#steps-for-the-experiment" class="blog-link">Steps for the experiment</a></li>
-            <li><a href="#the-experiment" class="blog-link">The experiment</a></li>
+            <li><a href="#default-configuration" class="blog-link">Important aspects of the default configuration for each VPN that could impact the perform</a></li>
             <li><a href="#testing" class="blog-link">Testing</a></li>
             <li><a href="#results" class="blog-link">Results</a></li>
             <li><a href="#observations" class="blog-link">Observations</a></li>
@@ -142,7 +142,7 @@
                 <h1 class="topic" id="network-performance-metrics">Network Performance Metrics</h1>
                 <div class="line"></div>
             </header>            
-            <p class="paragraph">These are the key metrics used in this study when testing networks: <span class="important-text">throughput</span>, <span class="important-text">latency</span>, and <span class="important-text">packet loss</span>:</p>
+            <p class="paragraph">Here are the key metrics used in this study when testing networks: <span class="important-text">throughput</span>, <span class="important-text">latency</span>, and <span class="important-text">packet loss</span>:</p>
 
             <ul class="paragraph">
               <li><span class="bold">Throughput</span>: This refers to how much data is sent from one point to another during a specific time frame. Throughput is typically measured in bits per second (bps). It is influenced by the entire infrastructure of the channel, including the physical medium (such as cabling) and computational power, among other factors.</li>
@@ -163,11 +163,9 @@
               <h1 class="topic" id="tools-for-measurement">Tools for Measurement</h1>
               <div class="line"></div>
           </header>
-          
-          <p class="paragraph">The tool used for measuring network performance is <span class="important-text">iPerf</span>.</p>
 
           <p class="sub-header">iPerf</p>
-          <p class="paragraph">iPerf is widely recognized as a reliable tool for testing VPN performance. In research conducted by Narayan, Brooking, and de Vere (2009), iPerf was used to measure the throughput of three different VPN solutions: PPTP, SSL (Secure Sockets Layer), and IPSec. Although the study is now outdated, the metrics measured are still relevant for evaluation today. The research concluded that network performance indeed depends on factors such as the operating system, the VPN solution, and the encryption algorithm chosen.</p>
+          <p class="paragraph">The tool used to measure network performance is <span class="important-text">iPerf3</span> (https://iperf.fr), version 3.1.3. The reason for choosing iPerf3 is that it effectively tests throughput and provides data on the number of packets transferred, including those that did not arrive. Since iPerf is available for Windows, Linux, and macOS, it is well-suited for this experiment, which is being conducted across all three operating systems.</p>
           
           <p class="sub-header">Operating systems</p>
           <p class="paragraph">The test was performed on 3 different operating systems: <span class="important-text">Windows 10</span>, <span class="important-text">Linux Ubuntu</span>, and <span class="important-text">macOS</span>.</p>
@@ -191,27 +189,10 @@
           
           <ol class="paragraph">
             <li class="bold">Identify the VPN solutions to experiment on, control traffic, determine which metrics to use, choose the tools, and decide what data to collect</li>
-              <p class="paragraph">As mentioned earlier, the three VPN solutions selected for this test are OpenVPN, WireGuard, and IPSec. <span class="bold">It is important to note that the default configurations of these VPN solutions were used</span>. For all three VPN solutions, default settings were maintained wherever possible, rather than standardizing the settings across network protocols, cryptographic algorithms, or compression choices.</p>
-              <p class="paragraph">The analysis also determined which metrics to use for testing. The lab setup was designed to be as simple as possible, while still ensuring one server and one client per operating system. This setup allows for control and monitoring of network traffic. The goal was to minimize external impacts on the network to ensure the most accurate and valid results.</p>
-              <p class="paragraph">Network metrics for examining the VPNs are: <br />
-                <span class="bold">- Throughput</span>: Measured in Megabits per second (Mbps) <br />
-                <span class="bold">- 400 ms Delay</span>: Represents part 1 of unreliability <br />
-                <span class="bold">- 1% Packet Loss</span>: Represents part 2 of unreliability <br />
-              </p>
-              <p class="paragraph">The tool used to measure network performance is iPerf3 (https://iperf.fr), version 3.1.3. The reason for choosing iPerf3 is that it effectively tests throughput and provides data on the number of packets transferred, including those that did not arrive. Since iPerf is available for Windows, Linux, and macOS, it is well-suited for this experiment, which is being conducted across all three operating systems.</p>
 
             <li class="bold">Test the Network in the Experimental Setup Without Any VPN Solution to Identify a Baseline Performance</li>
-            
 
             <li class="bold">Configure and Test VPN Solutions on Three Different Operating Systems with Network Unreliability Conditions</li>
-            <p class="paragraph">The traffic shaper tool was configured to add a 400 ms delay as one unreliability condition and 1% packet loss as the other.</p>
-            <p class="paragraph">Since all the data between the VPN clients and server is routed through the router, the traffic shaping applies in both directions. All clients were tested with three different setups:</p>
-            <ol class="paragraph">
-              <li><span class="bold">Baseline Test</span>: No unreliability added.</li>
-              <li><span class="bold">Unreliability #1</span>: The 400 ms delay option.</li>
-              <li><span class="bold">Unreliability #2</span>: The 1% packet loss option.</li>
-            </ol>
-
 
             <li class="bold">Analyze and Compare the Results to Identify Performance Differences Between the VPN Solutions</li>
             </ol>
@@ -222,11 +203,11 @@
 
         <article>
           <header class="header">
-              <h1 class="topic" id="the-experiment">The Experiment</h1>
+              <h1 class="topic" id="default-configuration">Important aspects of the default configuration for each VPN that could impact the perform</h1>
               <div class="line"></div>
           </header>
-          
-          <p class="paragraph">After setting up the three VPN solutions on three different operating systems, the following table shows important aspects of the default configuration for each VPN that could impact the perform:</p>
+          <p class="paragraph">As mentioned earlier, the three VPN solutions selected for this test are OpenVPN, WireGuard, and IPSec. It is important to note that the default configurations of these VPN solutions were used. For all three VPN solutions, default settings were maintained wherever possible, rather than standardizing the settings across network protocols, cryptographic algorithms, or compression choices.</p>
+          <p class="paragraph">After setting up the three VPN solutions on three different operating systems, below are some important aspects of the default configuration for each VPN that could impact the perform:</p>
 
           <ul class="paragraph">
             <li><span class="bold">Encryption Algorithm</span>: The performance of a VPN is significantly affected by the encryption algorithm used. Different algorithms have varying computational complexities, which can impact both the encryption/decryption speed and overall VPN performance.</li>
