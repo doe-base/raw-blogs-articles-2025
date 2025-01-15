@@ -1,0 +1,39 @@
+What is TCP Network Model
+- The TCP/IP Network model refered to  as a protocol suite. Its refered to as a suite because it comprising of diffrent network portols working togther to achive a goal, which is usally to trasmitting data packets from host a to host b. These protocols are arranged in a hierarchy or “stack”, with the higher-level protocols making use of the protocols beneath them. TCP/IP is the backbone protocol on with the Internet runs and a core protocol for computer networking. TCP/IP consist of serveal network layer that make data trasmittion so effient, check this on paragraph *****.
+- Server competing protocol suites exist but TCP/IP is by far the most successful over decades. This is because of Its elegant and flexible design and the fact that it is 'nonproprietary' (not owned or controlled exclusively by a single entity) protocol suite.
+- Lets break down the TCP/IP Network Model in more details, define some key terms and have a look at the TCP/IP layers.
+
+
+Definition of terms: 
+- TCP (Transmission Control Protocol): This is  'connection-oriented protocol' that provide Reliable Data Transfer, Error Detection and Correction, Segmentation and Reassembly. It a core protocol Internet protocol suite. You will usally here TCP being compare with another 'connection-oriented protocol' called UDP (User Diagram Data), just remeber TCP/IP is much better and prefer in applications requiring high reliability.
+- IP (Internet Protocol): You have defintly hear the term 'IP address' before. IP is a core protocol for transmitting data packets becuase it handle the task of address and routing packets. Ever host must have an ip address and any device with an ip address is a host. There are currently to version of IP that are standard today: IPv4 and IPv6 (You can read more about this in: link to some blogpost)
+- Packets: these are some chucks of data. Large data sets are  broken down into packets to meet the 'Maximum transfer unit' of a network. Each packet consist of a header, which cosist of its addressing infomation.
+
+
+Pratical Look at the TCP/IP Protocol
+Assuming you have two computers and there are some file you neet to transfer from computer a to computer b. You will be present with a couple of option of transmit the data (both wired and wirless option) but lets assume you choose an ethenet cable. Model data system have transfering data Streamline and the aucully working principle it opec from the user, but in this chapter we will look at work autully happens under the hood.
+
+After pluging the end of each ethernet cable to each computer you will be required to do a little configuration on both computer before network can be establish. You will need to asign each computers ip address to the same network range. For expample computer a will be 10.10.10.1 while computer b will be 10.10.10.2 . This creates a private IP address range by with both systems can transmit data and connection is now establish (these is a little more coplexity that happens under the hood but that is outside the scope of what am explaining here). Connect been establish is just as saying both computers now belong to the same network and has learn each others ip address under that network.
+
+In a nut shell when you transfer data from computer a to computer b, the data will pass though various layers of the TCP/IP network layers to get to it destination (computer b). This brings be to the last point to this article.
+
+The TCP/IP Network Model:
+The TCP/IP network model conventionally consist of 4 diffrent network layers (Application layer, Transport Layer, Network Layer, Link layer). Its more like a simplified version of the origial OSI network layers with consist of 7 layers (Application layer, Presentation layer, session layer, Transport layer, network layer, data link layer and physical layer). This is because The TCP/IP Model compines some layers. Let look at the for Layers of the TCP/IP Network Model:
+
+
+1) Link Layer: This layer is also called Network Interface Layer or Network Access Layer. It is responsible for 'framing' and tranmitting data bit over a physical componets, it could be wirelessly via waves or physical via signals, of the network such as cables, optical fibers, radio wave etc. From our pratical example in the previous section [link to something on the blog], this would be the ethenet cable we use to connect the two computers. Framing and Transmitions is handle by two link layer components 
+    -Media Access Control - Handles transmitting the packet
+    -Link layer control - Handle framing the packet
+     It is a comdination of Data Link Layer and the Physical Layer as defined in the OSI model..
+
+2) Network or Internet Layer: This layer consist of protocols which are responsible for the logical transmission of data over the a network. Example of these protocol include: Internet Protocol (IP), Internet Contol Message Protocl (ICMP), Address Resolution Protocol(ARP). All these protocol have there respective roles in transminting data and explaining those rows is outside the scope of this aritcle, but from our pratical example from the previous chapter, we can see the important of IP address every computer in the network (Computer a and Computer b) were give diffrent 'but similar' ip addresses. The similarity (10.10.10.x) is the subnet as metion earlier. As Computer a transmits data packet to Comuputer b. These packet will be framed with Computer b' ip address as the destination (Rember to write a little more about Ethernet Frame).
+
+
+3) Trasnport Layer: This layer consist of protocols that provides Reliable Data Transfer from one host of a network all the way to the end point or reciver host of the network. It is concerned with end-to-end communication. TCP, UDP, and SCTP are exaples of Transport layer protocols.
+
+4) Application layer: This comprises of session and presentation layer from the OSI layer. Application layer cosist of protocols that works dirctly with the end user's application, providing various network services to these applications. Some Application layer protocal are SSH, FTP, HTTP, DNS, SNMP and many more.
+
+
+The TCP Nework model
+
+

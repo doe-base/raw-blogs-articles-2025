@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/monokai.min.css"
+  />
+    <link rel="stylesheet" href="./style.css">
+    <title>TCP/IP Networking Model</title>
+</head>
+<style>
+    .hljs {
+      background-color: transparent;
+    }
+
+    .hljs-ln-n {
+      padding-right: 1rem;
+    }
+  </style>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="container" style="max-width: 750px; margin: 0 auto">
+
+        <article>
+            <header class="header">
+                <h1 class="topic">Introduction</h1>
+                <div class="line"></div>
+            </header>
+            <p class="paragraph">The TCP/IP network model is referred to as a network suite. It is referred to as a suite because it consists of different networking protocols working together to transmit data packets from <span class="folder">host A</span> to <span class="folder">host B</span> and ensure a reliable connection between networks. These protocols are arranged in a <strong class="important-text">hierarchy</strong> or <strong class="important-text">stack</strong>, where the higher-level protocols make use of the protocols beneath them. TCP/IP is the backbone protocol on which the Internet runs and a core protocol for computer networking in general.</p>
+            
+            <p class="paragraph">Several competing protocol suites exist, but TCP/IP has been by far the most successful over the decades. This is because of its elegant and flexible design and the fact that it is a <strong class="important-text">nonproprietary</strong> protocol suite (not owned or controlled exclusively by a single entity).</p>
+
+            <p class="paragraph">In this article, we will break down the TCP/IP Network Model in more detail, define some key terms, and take a look at the TCP/IP layering model.</p>
+        </article>
+
+
+        <article>
+            <header class="header">
+                <h1 class="topic">Definition of Terms</h1>
+                <div class="line"></div>
+            </header>
+            <div>
+                <div class="sub-header">TCP - Transmission Control Protocol</div>
+                <p class="paragraph">TCP is a <span class="important-text">connection-oriented</span> protocol that provides reliable data transfer, error detection and correction, segmentation, and reassembly. It operates at the Transport Layer of the TCP/IP Network Model and is a core protocol in the Internet protocol suite. TCP is often compared to <a class="blog-link" href="https://www.cloudflare.com/learning/ddos/glossary/user-datagram-protocol-udp/#:~:text=The%20User%20Datagram%20Protocol%2C%20or,connection%20before%20data%20is%20transferred." target="_blank">UDP (User Diagram Data)</a>, but TCP is generally preferred in networks requiring high reliability due to its robust error-handling mechanisms.</p>
+            </div>
+            <div>
+                <div class="sub-header">IP - Internet Protocol</div>
+                <p class="paragraph">You've definitely heard the term "IP address" before. The Internet Protocol is a core protocol for transmitting data packets because it handles the tasks of <span class="important-text">addressing and routing packets</span>. Every host must have an IP address through which packets can be addressed to it and every device with an IP address is considered a host. There are currently two standard versions of the Internet Protocol: IPv4 and IPv6. (<a class="blog-link" href="https://www.simplilearn.com/tutorials/cyber-security-tutorial/difference-between-ipv4-and-ipv6#:~:text=IPv4%20is%20composed%20of%2032,the%20Internet%20Protocol%20(IP)." target="_blank">Read more about IP here</a>)</p>
+            </div>
+            <div>
+                <div class="sub-header">Packets</div>
+                <p class="paragraph">The term "packets" is used in various places in this article. It simply refers to small units of data. When transmitting data, large data sets are broken down into packets to meet the <span class="important-text">Maximum Transfer Unit (MTU)</span> of a particular network. Each packet is framed with a <span class="important-text">header</span>, which consists of its addressing information such as its source IP address and destination IP address.</p>
+            </div>
+        </article>
+
+
+        <article id="Practical-Look-at-the-TCP/IP-Networking-Model">
+            <header class="header">
+                <h1 class="topic">A Practical Look at the TCP/IP Networking Model</h1>
+                <div class="line"></div>
+            </header>
+            <p class="paragraph">In this section we'll take a shallow look at an instance of a Computer Network in action to better understand the role of the TCP/IP network model.</p>
+
+            <p class="paragraph">Assuming you have two laptops and need to transfer some files from <span class="folder">Laptop A</span> to <span class="folder">Laptop B</span>, you'll be presented with a couple of options (both wired and wireless). Let's assume you choose an Ethernet cable for the transfer. Modern systems have streamlined the data transfer process, making much of it opaque to the user. In this chapter, we'll delve deeper into the process of your files traveling from <span class="folder">Laptop A</span> to <span class="folder">Laptop B</span>.</p>
+
+            <p class="paragraph">After plugging each end of the Ethernet cable into both laptops, the next step is to assign each laptop an IP address within the same network range. For example, <span class="folder">Laptop A</span> could be assigned <span class="folder">10.10.10.1</span>, while <span class="folder">Laptop B</span> would be assigned <span class="folder">10.10.10.2</span>. This creates a private IP address range through which both laptops can transfer data addressed to each other's IP addresses. Each laptop automatically learns the other's IP address via an <a class="blog-link" href="https://en.wikipedia.org/wiki/Address_Resolution_Protocol" target="_blank">ARP (Address Resolution Protocol)</a> request,
+               and a connection is then established.</p>
+
+            <p class="paragraph">When you transfer files from <span class="folder">Laptop A</span>, addressed to <span class="folder">Laptop B's</span> IP address, the data passes through a series of <span class="important-text">TCP network layers</span> to reach its destination. Let's delve into these layers and see their role in data transmission.</p>
+        </article>
+
+
+        <article>
+            <header class="header">
+                <h1 class="topic">The TCP/IP Network Layers</h1>
+                <div class="line"></div>
+            </header>
+            <p class="paragraph">The TCP/IP network model conventionally consists of four (4) distinct layers: <span class="folder">Application layer</span>, <span class="folder">Transport layer</span>, <span class="folder">Network layer</span>, and <span class="folder">Link layer</span>. This model is a simplified version of the OSI (Open Systems Interconnection) model, which has seven (7) layers: <span class="folder">Application layer</span>, <span class="folder">Presentation layer</span>, <span class="folder">Session layer</span>, <span class="folder">Transport layer</span>, <span class="folder">Network layer</span>, <span class="folder">Data link layer</span>, and <span class="folder">Physical layer</span>. The TCP/IP model combines some layers of the OSI model for simplicity. Let's explore the four layers of the TCP/IP model:</p>
+
+            <div>
+                <div class="sub-header">1. Link Layer</div>
+                <p class="paragraph" style="margin-bottom: 1rem;">This layer is also known as the Network Interface Layer or Network Access Layer. It's responsible for framing and transmitting data bits over a physical medium. This can be transmitted wirelessly via electromagnetic waves or physically via wired signals. Examples of physical components include cables, optical fibers, radio waves, etc. In our practical example from the previous section &lt; <a class="blog-link" href="#Practical-Look-at-the-TCP/IP-Networking-Model">Practical Look at the TCP/IP Networking Model</a> &gt;, this would be the Ethernet cable used to connect the two computers.</p>
+                <p class="paragraph" style="margin-bottom: 0rem;">Framing and Transmission is handle by two separate components of the Link layer:</p>
+                <ul class="paragraph-ul">
+                    <li>Link Layer Control - Handles framing the packets</li>
+                    <li>Media Access Control - Handles transmitting the packet to physical components.</li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="sub-header">2. Network or Internet Layer</div>
+                <p class="paragraph" style="margin-bottom: 1rem;">This layer consists of protocols responsible for the logical transmission of data over a network. Examples of these protocols include: Internet Protocol (IP), Internet Control Message Protocol (ICMP), and Address Resolution Protocol (ARP). Each of these protocols plays a specific role in transmitting data.</p>
+                <p class="paragraph" style="margin-bottom: 1rem;">In our practical example from the previous section &lt; <a class="blog-link" href="#Practical-Look-at-the-TCP/IP-Networking-Model">Practical Look at the TCP/IP Networking Model</a> &gt;, we assigned different but similar IP addresses to each laptop. The similarity (10.10.10.x) indicates that they belong to the same subnet. As <span class="folder">Laptop A</span> transmits a data packet to <span class="folder">Laptop B</span>, the packet will be framed in <span class="folder">Laptop A's</span> Link Layer Control. The frame will contain <span class="folder">Laptop B's</span> IP address as the destination.</p>
+                <p class="paragraph">If there were more than two laptops connected to the network, communication would be impossible without IP addresses. IP addresses are essential for each laptop to know how to send files to others within the network.</p>
+            </div>
+
+            <div>
+                <div class="sub-header">3. Transport Layer</div>
+                <p class="paragraph">This layer consists of protocols that provide reliable data transfer from one host in a network to the endpoint or receiving host of the network. It is concerned with end-to-end communication. TCP, UDP, and SCTP (Stream Control Transmission Protocol) are examples of Transport layer protocols.</p>
+
+                <p class="paragraph">End-to-end communication means sender-to-receiver communication. In our practical example from the previous section &lt; <a class="blog-link" href="#Practical-Look-at-the-TCP/IP-Networking-Model">Practical Look at the TCP/IP Networking Model</a> &gt;, we looked at a very simple network topology involving only two devices. In the Internet or a more complex network topology, data does not always travel directly from one host to another. It usually hops through a series of routes before reaching its destination host.</p>
+
+                <p class="paragraph">Communication between one route and the next route is referred to as <span class="important-text">hop-to-hop</span> communication while the overall communication between the source host and destination host is the <span class="important-text">end-to-end</span> communication.</p>
+                
+                <p class="paragraph">As packets travel through these complex topologies, they are always aware of their next hop through a Layer 2 header using a <span class="important-text">MAC (Media Access Control)</span> address and their destination host through a Layer 3 header using an IP address. Every IOT device is assigned a unique MAC address at the time of manufacture.</p>
+            </div>
+
+            <div>
+                <div class="sub-header">4. Application Layer</div>
+                <p class="paragraph" style="margin-bottom: 1rem;">This layer combines the Session and Presentation layers from the OSI layer model. The Application layer consists of protocols that work directly with the end user's applications, providing various network services to these applications. Some Application layer protocols include SSH (Secure Shell), FTP (File Transfer Protocol), HTTP (Hypertext Transfer Protocol), DNS (Domain Name System), SNMP (Simple Network Management Protocol), and many more.</p>
+            </div>
+        </article>
+
+
+        <article id="Practical-Look-at-the-TCP/IP-Networking-Model">
+            <header class="header">
+                <h1 class="topic">Conclusion</h1>
+                <div class="line"></div>
+            </header>
+            <p class="paragraph">In this exploration of the TCP/IP Network Model, we've delved into the fundamental layers and protocols that underpin modern computer networking.</p>
+
+            <p class="paragraph">We've examined how data flows through the network, starting at the Application layer and traversing the Transport, Network, and Link layers. We've also explored the roles of key protocols like TCP, IP, and ARP in ensuring reliable and efficient communication.</p>
+
+            <p class="paragraph">By understanding the TCP/IP model, you gain a deeper appreciation for the complex processes involved in modern computer networking. This knowledge can be valuable for troubleshooting network issues, designing network architectures, and staying informed about emerging networking technologies.</p>
+        </article>
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+
+    <script src="path/to/highlight.min.js"></script>
+    <script src="path/to/highlightjs-line-numbers.min.js"></script>
+
+    <script>
+      hljs.highlightAll();
+    </script>
+    <script>
+      hljs.initLineNumbersOnLoad();
+    </script>
+
+</body>
+</html>
