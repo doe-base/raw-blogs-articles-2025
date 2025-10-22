@@ -1,0 +1,6 @@
+https://www.netacad.com/cisco-packet-tracer
+
+
+configure the divices:
+1. Start with the Router. Click on the Router to open its interface. Click on the Ethnet interface you connected the Ethnet cable on the router (GigabitEthanet0/0 in my case) and turn it on. Then set the ip address as : 192.168.1.1
+and the subnet mask as: 255.255.255.0 

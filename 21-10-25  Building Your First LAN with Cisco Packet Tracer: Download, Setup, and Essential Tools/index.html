@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link
+		rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/monokai.min.css"
+	/>
+	<link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"/>
+    <title>Building Your First LAN with Cisco Packet Tracer: Download, Setup, and Essential Tools</title>
+</head>
+<style>
+    .hljs {
+      background-color: transparent;
+    }
+
+    .hljs-ln-n {
+      padding-right: 1rem;
+    }
+  </style>
+<body>
+
+
+    <section class="container" style="max-width: 750px; margin: 0 auto">
+
+		<article>
+			<header class="header">
+				<h1 class="topic">Introduction</h1>
+				<div class="line"></div>
+			</header>            
+
+			<p class="paragraph">
+				Cisco Packet Tracer is a free network simulation tool developed by Cisco Systems. It lets users create virtual networks and see how data packets travel across devices, making it a great way to learn networking concepts without needing physical hardware.  
+			</p>
+			<p class="paragraph">
+				In this article, we’ll build a Local Area Network (LAN) using Cisco Packet Tracer. This is a perfect project if you’re new to the software, as it covers the basics and introduces you to some of its most useful tools. Let’s start by downloading the software.
+			</p>
+
+		</article>
+
+
+
+
+		<article>
+			<header class="header">
+				<h1 class="topic">How to Download Cisco Packet Tracer</h1>
+				<div class="line"></div>
+			</header>  
+
+			<ul class="paragraph" style="margin-bottom: 0rem;">
+				<li>Go to the Cisco Networking Academy's "Getting Started with Cisco Packet Tracer" course: 
+				<a href="https://www.netacad.com/courses/getting-started-cisco-packet-tracer" target="_blank" rel="noopener noreferrer" class="blog-link">
+					www.netacad.com/courses/getting-started-cisco-packet-tracer
+				</a>
+				</li>
+				<li>Click the login button in the navigation bar to sign in or create a free account.</li>
+				<li>Start the course. In the first module, <strong>"1.0 Install Cisco Packet Tracer"</strong>, you’ll find a resource link to download the software.</li>
+				<li>Download the version for your operating system and install it as you would any other application.</li>
+			</ul>
+			<div class="img-box">
+				<a target="_blank" href="https://github.com/daniel-idoko/blog-images/blob/main/21-10-25%20%20Building%20Your%20First%20LAN%20with%20Cisco%20Packet%20Tracer:%20Download,%20Setup,%20and%20Essential%20Tools/cisco%20learning%20resources.png?raw=true" class="glightbox" data-gallery="gallery1">	
+					<img src="https://github.com/daniel-idoko/blog-images/blob/main/21-10-25%20%20Building%20Your%20First%20LAN%20with%20Cisco%20Packet%20Tracer:%20Download,%20Setup,%20and%20Essential%20Tools/cisco%20learning%20resources.png?raw=true" alt="Cisco Networking Academy's Resource Hub page" class="img">
+				</a>
+			</div>
+		</article>
+
+     
+		<article>
+			<header class="header">
+				<h1 class="topic">Let's Build a Virtual Local Area Network with Cisco Packet Tracer</h1>
+				<div class="line"></div>
+			</header> 
+				<blockquote class="definition">
+					<p class="quote-paragraph">
+					A LAN, or Local Area Network, is a group of connected computing devices within a localized area that usually share a centralized Internet connection.
+					</p>
+					<p class="ref">
+					ref: <a target="_blank" href="https://www.cloudflare.com/learning/network-layer/what-is-a-lan/">cloudflare.com</a>
+					</p>
+				</blockquote>
+				<p class="paragraph" style="margin-bottom: 0;">
+					In this project, we will build a LAN for a small internet café business, which will include:
+				</p>
+				<ul class="paragraph" style="margin-bottom: 2rem;">
+					<li style="margin-bottom: 0;">1 administrative laptop</li>
+					<li style="margin-bottom: 0;">4 computers for public use</li>
+					<li style="margin-bottom: 0;">1 printer</li>
+					<li style="margin-bottom: 0;">1 router for internet connectivity</li>
+					<li style="margin-bottom: 0;">1 switch to connect all devices</li>
+				</ul>
+	
+
+
+
+
+				<div>
+					<p class="sub-header">Step 1: Add Devices</p>  
+					<p class="paragraph" style="margin-bottom: 0rem;">
+						Start by adding all the devices we’ll need for the network.  
+						Make sure to use the same device models shown here, as different devices may require slightly different configurations.
+					</p>
+					<div class="img-box">
+						<a style="margin-bottom: 2rem; display: block;" target="_blank" href="https://github.com/daniel-idoko/blog-images/blob/main/21-10-25%20%20Building%20Your%20First%20LAN%20with%20Cisco%20Packet%20Tracer:%20Download,%20Setup,%20and%20Essential%20Tools/Add%20devices.png?raw=true" class="glightbox" data-gallery="gallery1">  
+							<img src="https://github.com/daniel-idoko/blog-images/blob/main/21-10-25%20%20Building%20Your%20First%20LAN%20with%20Cisco%20Packet%20Tracer:%20Download,%20Setup,%20and%20Essential%20Tools/Add%20devices.png?raw=true" alt="Add devices in Cisco Packet Tracer" class="img">
+						</a>
+					</div>
+				</div>
+
+
+				<div>
+					<p class="sub-header">Step 2: Connect Devices</p>  
+					<p class="paragraph" style="margin-bottom: 0rem;">
+						Using a <strong class="important-word">copper straight-through cable</strong>, connect each device to the switch.  
+						Make note of which Ethernet port each device is connected to on the switch, as well as the IP address that will later be assigned to it.  
+						(Note: IP addresses are not assigned yet in this step.)
+					</p>
+					<div class="img-box">
+						<a style="margin-bottom: 2rem; display: block;" target="_blank" href="https://github.com/daniel-idoko/blog-images/blob/main/21-10-25%20%20Building%20Your%20First%20LAN%20with%20Cisco%20Packet%20Tracer:%20Download,%20Setup,%20and%20Essential%20Tools/Connect%20devices2.png?raw=true" class="glightbox" data-gallery="gallery1">  
+							<img src="https://github.com/daniel-idoko/blog-images/blob/main/21-10-25%20%20Building%20Your%20First%20LAN%20with%20Cisco%20Packet%20Tracer:%20Download,%20Setup,%20and%20Essential%20Tools/Connect%20devices2.png?raw=true" alt="Connect devices with cables in Cisco Packet Tracer" class="img">
+						</a>
+					</div>
+				</div>
+
+				<div>
+					<p class="sub-header">Step 3: Assign IP Addresses</p>  
+					<p class="paragraph" style="margin-bottom: 0;">
+						Now, assign an IP address to each device (except the switch):
+					</p>
+					<ul class="paragraph" style="margin-bottom: 2rem;">
+						<li>Click on the device to open its <strong class="important-text">Device Configuration Window</strong>.</li>
+						<li>Navigate to the Ethernet interface that connects to the switch, then turn it on if it’s off.</li>
+						<li>Assign an IPv4 address (as shown in the previous step) and a subnet mask of <code>255.255.255.0</code>.</li>
+						<div class="img-box">
+							<a target="_blank" href="https://github.com/daniel-idoko/blog-images/blob/main/21-10-25%20%20Building%20Your%20First%20LAN%20with%20Cisco%20Packet%20Tracer:%20Download,%20Setup,%20and%20Essential%20Tools/Router%20IP%20address.png?raw=true" class="glightbox" data-gallery="gallery1">  
+								<img src="https://github.com/daniel-idoko/blog-images/blob/main/21-10-25%20%20Building%20Your%20First%20LAN%20with%20Cisco%20Packet%20Tracer:%20Download,%20Setup,%20and%20Essential%20Tools/Router%20IP%20address.png?raw=true" alt="Router IP address configuration" class="img">
+							</a>
+						</div>
+
+						<li>Next, go to <span class="folder">Global Settings</span> and set the <strong>IPv4 Default Gateway</strong> to your router’s IP address (<code>192.168.1.1</code> in our case).  
+						Skip this step for the router and printer.
+						</li>
+						<div class="img-box">
+							<a target="_blank" href="https://github.com/daniel-idoko/blog-images/blob/main/21-10-25%20%20Building%20Your%20First%20LAN%20with%20Cisco%20Packet%20Tracer:%20Download,%20Setup,%20and%20Essential%20Tools/Laptop%20gateway%20address.png?raw=true" class="glightbox" data-gallery="gallery1">  
+								<img src="https://github.com/daniel-idoko/blog-images/blob/main/21-10-25%20%20Building%20Your%20First%20LAN%20with%20Cisco%20Packet%20Tracer:%20Download,%20Setup,%20and%20Essential%20Tools/Laptop%20gateway%20address.png?raw=true" alt="Laptop default gateway configuration" class="img">
+							</a>
+						</div>
+					</ul>
+				</div>
+
+				<div>
+					<p class="sub-header">Step 4: Run a Ping Test</p>  
+					<p class="paragraph" style="margin-bottom: 0rem;">
+						Finally, test your network connectivity.  
+						Click on any computer or laptop, go to the <strong>Desktop</strong> tab, open the <strong>Command Prompt</strong>, and run a <code>ping</code> test to another device on the network.  
+						If everything is configured correctly, you should see successful replies.
+					</p>
+
+					<div class="img-box">
+						<a href="https://github.com/daniel-idoko/blog-images/blob/main/21-10-25%20%20Building%20Your%20First%20LAN%20with%20Cisco%20Packet%20Tracer:%20Download,%20Setup,%20and%20Essential%20Tools/Ping%20test.png?raw=true" class="glightbox" data-gallery="gallery1">
+							<img src="https://github.com/daniel-idoko/blog-images/blob/main/21-10-25%20%20Building%20Your%20First%20LAN%20with%20Cisco%20Packet%20Tracer:%20Download,%20Setup,%20and%20Essential%20Tools/Ping%20test.png?raw=true" alt="Ping test in Cisco Packet Tracer" class="img">
+						</a>
+					</div>
+				</div>
+
+		</article>
+
+
+		<article>
+			<header class="header">
+				<h1 class="topic">Conclusion</h1>
+				<div class="line"></div>
+			</header>            
+
+			<p class="paragraph">
+				In this project, we built a simple LAN using Cisco Packet Tracer, connecting devices, assigning IP addresses, and testing connectivity with a ping. This setup represents a basic local network, similar to what you'd find in a small office or internet café.
+			</p>
+			<p class="paragraph">
+				While this is a simplified example, you can take it further by adding interconnections between multiple networks, configuring routers for internet access, or setting up DHCP and DNS servers to automate IP assignments and name resolution.
+			</p>
+			<p class="paragraph">Experimenting with these features will give you a deeper understanding of how real-world networks operate and Cisco Packet Tracer is a great tool to keep learning and testing safely.</p>
+
+		</article>
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+
+    <script src="path/to/highlight.min.js"></script>
+    <script src="path/to/highlightjs-line-numbers.min.js"></script>
+
+    <script>
+      hljs.highlightAll();
+    </script>
+    <script>
+      hljs.initLineNumbersOnLoad();
+    </script>
+	<script>
+		// Initialize GLightbox
+		const lightbox = GLightbox({ selector: '.glightbox' });
+	</script>
+
+</body>
+</html>
